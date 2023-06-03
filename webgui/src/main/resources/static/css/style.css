@@ -1,0 +1,20 @@
+.header {
+    background-color : magenta;
+    display: flex;
+}
+.header ul {
+    display: flex;
+    text-align: right;
+}
+.header li {
+    padding-right: 25px;
+    text-align: right;
+}
+
+footer {
+    background-color : forestgreen;
+}
+
+footer > ul > li > a {
+    color: white
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<header class="header">
+    <h1>ChinaCalc</h1>
+    <ul>
+        <li><a href="/main">Калькулятор</a></li>
+        <li><a href="/orders">Заказы</a> </li>
+        <li><a href="/customers">Клиенты</a></li>
+        <li><a href="/logout">Выйти</a></li>
+    </ul>
+</header>
+<body>
+<h1>Администрирование клиентов</h1>
+<fieldset>
+    <legend>Поиск клиента</legend>
+    <label for="id-filter">ID клиента</label>
+    <input type="text" id="id-filter" name="name-filter">
+    <label for="name-filter">Наименование</label>
+    <input type="text" id="name-filter" name="name-filter">
+    <label for="type-filter">Тип клиента</label>
+    <input type="text" id="type-filter" name="type-filter">
+    <label for="manager-filter">Менеджер</label>
+    <input type="text" id="manager-filter" name="manager-filter">
+</fieldset>
+<div class="order-table">
+    <table>
+        <tr>
+            <th>ID клиента</th>
+            <th>Дата создания</th>
+            <th>Наименование</th>
+            <th>Тип клиента</th>
+            <th>Менеджер</th>
+        </tr>
+        <tr>
+            <td>1936</td>
+            <td>22.08.1992</td>
+            <td>ООО "Газпром-Колывань"</td>
+            <td>Новый</td>
+            <td>Олег Тиньков</td>
+        </tr>
+        <tr>
+            <td>1937</td>
+            <td>22.08.1992</td>
+            <td>ООО "Гогельс Лимитед"</td>
+            <td>Повторный</td>
+            <td>Некот Вадимович</td>
+        </tr>
+        <tr>
+            <td>1488</td>
+            <td>21.04.1902</td>
+            <td>ООО "НСДАП"</td>
+            <td>Постоянный</td>
+            <td>Гитлер Ильнур</td>
+        </tr>
+    </table>
+</div>
+</body>
+<footer>
+    <ul>
+        <li><a href="https://github.com/saaws88">Saaws88</a></li>
+        <li><a href="https://twitter.com/ne_kot">Twitter</a></li>
+        <li><a href="http://localhost8088:/admin">Страница администрирования</a></li>
+    </ul>
+</footer>
+</html>
