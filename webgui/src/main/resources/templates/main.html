@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>main</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<header class="header">
+    <h1>ChinaCalc</h1>
+    <ul>
+        <li><a href="/main">Калькулятор</a></li>
+        <li><a href="/orders">Заказы</a> </li>
+        <li><a href="/customers">Клиенты</a></li>
+        <li><a href="/logout">Выйти</a></li>
+    </ul>
+</header>
+<body>
+<h1>Расчет стоимости посылки</h1>
+<div class="currencies">
+    <label for="usd">Курс доллара:</label>
+    <output id="usd"> 88.18 </output><br>
+    <label for="cny">Курс юаня:</label>
+    <output id="cny"> 11.99 </output><br>
+</div>
+<div class="customer">
+    <form action="">
+        <label for="customer">Клиент:</label>
+        <input type="search" id="customer" name="customer"><br>
+    </form>
+</div>
+<div class="parcel">
+    <form>
+        <label for="order-cost">Стоимость заказа</label>
+        <input type="text" id="order-cost" name="order-cost">
+        <label for="weight">Вес</label>
+        <input type="text" id="weight" name="weight"><br>
+        <label for="volume">Объем</label>
+        <input type="text" id="volume" name="volume"><br>
+        <fieldset>
+            <legend>Тип упаковки</legend>
+            <label for="package-type1">Картонная коробка</label>
+            <input type="radio" id="package-type1" name="1"><br>
+            <label for="package-type2">Обрешетка</label>
+            <input type="radio" id="package-type2" name="2"><br>
+            <label for="package-type3">Деревянный короб</label>
+            <input type="radio" id="package-type3" name="3"><br>
+        </fieldset>
+    </form>
+</div>
+</body>
+<footer>
+    <ul>
+        <li><a href="https://github.com/saaws88">Saaws88</a></li>
+        <li><a href="https://twitter.com/ne_kot">Twitter</a></li>
+        <li><a href="http://localhost:8088/admin">Страница администрирования</a></li>
+    </ul>
+</footer>
+</html>

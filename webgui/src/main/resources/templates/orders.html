@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>orders</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<header class="header">
+    <h1>ChinaCalc</h1>
+    <ul>
+        <li><a href="/main">Калькулятор</a></li>
+        <li><a href="/orders">Заказы</a> </li>
+        <li><a href="/customers">Клиенты</a></li>
+        <li><a href="/logout">Выйти</a></li>
+    </ul>
+</header>
+<body>
+    <h1>
+        Заказы
+    </h1>
+
+    <fieldset>
+        <legend>Поиск заказа</legend>
+        <label for="order-filter">Номер заказа</label>
+        <input type="text" id="order-filter" name="order-filter">
+        <label for="customer-filter">Клиент</label>
+        <input type="text" id="customer-filter" name="customer-filter">
+        <label for="manager-filter">Менеджер</label>
+        <input type="text" id="manager-filter" name="manager-filter">
+    </fieldset>
+    <div class="order-table">
+        <table>
+            <tr>
+                <th>Дата заказа</th>
+                <th>Номер Заказа</th>
+                <th>Вес</th>
+                <th>Объём</th>
+                <th>Рассчетная единица</th>
+                <th>Стоимость заказа</th>
+                <th>Стоимость доставки</th>
+                <th>Вид упаковки</th>
+                <th>Ссылка на товар</th>
+                <th>Клиент</th>
+                <th>Менеджер КС</th>
+            </tr>
+            <tr>
+                <td>29.05.2023</td>
+                <td>143413932</td>
+                <td>0,318</td>
+                <td>0,300</td>
+                <td>Вес</td>
+                <td>2375</td>
+                <td>245,45</td>
+                <td>Деревянный короб</td>
+                <td><a href="https://twitter.com/xopyc_akcimand/status/1663914619281326080/photo/1">Показать товар</a></td>
+                <td>Вадим Вадимович З.</td>
+                <td>Некот В.В.</td>
+            </tr>
+            <tr>
+                <td>9.05.1945</td>
+                <td>143411488</td>
+                <td>5,318</td>
+                <td>6,300</td>
+                <td>Объём</td>
+                <td>1488</td>
+                <td>88,14</td>
+                <td>Картонная коробка</td>
+                <td><a href="https://twitter.com/xopyc_akcimand/status/1663914619281326080/photo/1">Показать товар</a></td>
+                <td>Адольфов Г.</td>
+                <td>Гогель В.</td>
+            </tr>
+        </table>
+    </div>
+</body>
+<footer>
+    <ul>
+        <li><a href="https://github.com/saaws88">Saaws88</a></li>
+        <li><a href="https://twitter.com/ne_kot">Twitter</a></li>
+        <li><a href="http://localhost8088:/admin">Страница администрирования</a></li>
+    </ul>
+</footer>
+</html>
