@@ -11,11 +11,11 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+
 @Configuration
 @EnableWebSecurity
 
 public class WebSecurityConfig {
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -29,8 +29,7 @@ public class WebSecurityConfig {
                 )
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .permitAll();
-
-           return http.build();
+        return http.build();
     }
 
     @Bean
@@ -41,15 +40,7 @@ public class WebSecurityConfig {
                         .roles("USER")
                         .password("user")
                         .build();
-
-        UserDetails admin =
-                User.withDefaultPasswordEncoder()
-                        .username("adm_adm")
-                        .roles("ADMIN")
-                        .password("admin")
-                        .build();
-
-        return new InMemoryUserDetailsManager(user, admin);
+        return new InMemoryUserDetailsManager(user);
     }
-
 }
+
