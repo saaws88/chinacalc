@@ -10,24 +10,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@Controller
+@Controller 
 @RequestMapping(path="/demo")
 public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @PostMapping(path="/add")
-    public @ResponseBody String addNewUser (@RequestParam String name) {
+    @PostMapping(path="/add") 
+    public @ResponseBody String addNewUser (@RequestParam String name
+            , @RequestParam String email) {
 
         User n = new User();
         n.setName(name);
-        n.setRole("USER");
+        n.setEmail(email);
         userRepository.save(n);
-        return String.format("New user %s added", name);
+        return "Saved";
     }
 
     @GetMapping(path="/all")
-    public @ResponseBody Iterable<User> getAllUsers(){
+    public @ResponseBody Iterable<User> getAllUsers() {
         return userRepository.findAll();
     }
 }

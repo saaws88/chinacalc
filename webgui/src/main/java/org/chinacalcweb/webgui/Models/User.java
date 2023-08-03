@@ -5,20 +5,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
+@Entity // This tells Hibernate to make a table out of this class
 public class User {
     @Id
-    
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;    
+    private Integer id;
+
     private String name;
-    private String role;
+
+    private String email;
 
     public Integer getId() {
         return id;
     }
 
-    private void setId(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -30,12 +31,11 @@ public class User {
         this.name = name;
     }
 
-    public String getRole() {
-        return role;
+    public String getEmail() {
+        return email;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setEmail(String email) {
+        this.email = email;
     }
-
 }
