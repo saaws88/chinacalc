@@ -1,43 +1,31 @@
-package org.chinacalcweb.webgui.Models;
+package org.chinacalcweb.webgui.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Data;
+
 
 @Table(name="chinacalc_users")
 @Entity
+@Data
 public class ChinacalcUser {
+
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
-
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @Column(name="id",nullable=false,unique=true)
+    private long id;
+    @Column(name="name",nullable=false)
     private String name;
-
+    @Column(name="email",nullable=true)
     private String email;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    @Column(name="login",nullable=false)
+    private String login;
+    @Column(name="password",nullable=false)
+    private String password;
+    @Column (name="role",nullable=false)
+    private Role role;
 }
