@@ -24,14 +24,15 @@ public class UserController {
     @PostMapping(path="/add")
     public @ResponseBody String addNewUser (@RequestParam String name,
     @RequestParam String email,
-    @RequestParam String login) {
+    @RequestParam String login,
+    @RequestParam(defaultValue="USER") Role role) {
 
         ChinacalcUser n = new ChinacalcUser();
         n.setName(name);
         n.setEmail(email);
         n.setLogin(login);
+        n.setRole(role);
         n.setPassword(PassGen.generatePassayPassword());
-        n.setRole(Role.USER);
         userRepository.save(n);
         return "Saved";
     }
