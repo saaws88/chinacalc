@@ -1,4 +1,4 @@
-package org.chinacalcweb.webgui.configs;
+package org.chinacalcweb.webgui.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -6,7 +6,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
-    public void addViewControllers(ViewControllerRegistry registry) {
+    
+  public void addViewControllers(ViewControllerRegistry registry) {
+
         registry.addViewController("/home").setViewName("home");
         registry.addViewController("/").setViewName("home"); //greetings & log in
         registry.addViewController("/login").setViewName("login"); //log in page
@@ -18,5 +20,6 @@ public class MvcConfig implements WebMvcConfigurer {
 
         registry.addViewController("/orders").setViewName("orders"); //orders db display
         registry.addViewController("/customers").setViewName("customers"); //customers db display
-    }
+    
+  }
 }

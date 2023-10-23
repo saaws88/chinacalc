@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.9</version>
+		<version>3.1.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.chinacalcweb</groupId>
@@ -15,7 +15,7 @@
 	<name>webgui</name>
 	<description>Web GUI for ChinaCalc app</description>
 	<properties>
-		<java.version>20</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<!-- Templates !-->
@@ -74,13 +74,14 @@
 		</dependency>
 	</dependencies>
 	
-
-
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <mainClass>org.chinacalcweb.webgui.WebguiApplication</mainClass>
+        </configuration>
 			</plugin>
 		</plugins>
 	</build>

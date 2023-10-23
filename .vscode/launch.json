@@ -1,0 +1,18 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "WebguiApplication",
+      "request": "launch",
+      "mainClass": "org.chinacalcweb.webgui.WebguiApplication",
+      "projectName": "webgui"
+    },
+    {
+      "type": "java",
+      "name": "Run with AppMap",
+      "request": "launch",
+      "mainClass": "",
+      "vmArgs": "-javaagent:${userHome}\\.appmap\\lib\\java\\appmap.jar"
+    }
+  ]
+}
