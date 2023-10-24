@@ -1,44 +1,60 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <title>Admin</title>
-  <link rel="stylesheet" href="../static/css/style.css">
-</head>
-<body>
-<header class="header">
-  <h1>ChinaCalc</h1>
-  <ul>
-    <li><a href="/main">Калькулятор</a></li>
-    <li><a href="/orders">Заказы</a> </li>
-    <li><a href="/customers">Клиенты</a></li>
-    <li><a href="/logout">Выйти</a></li>
-  </ul>
-</header>
-<h1>Администрирование пользователей</h1>
-<table>
-  <tr>
-    <th>Пользователь</th>
-    <th>Роль</th>
-    <th>Логин</th>
-  </tr>
-  <tr>
-    <td>Вагим</td>
-    <td>usr</td>
-    <td>nekot</td>
-  </tr>
-  <tr>
-    <td>Моторен</td>
-    <td>adm</td>
-    <td>slayersky</td>
-  </tr>
-</table>
-</body>
-<footer>
-  <ul>
-    <li><a href="https://github.com/saaws88">Saaws88</a></li>
-    <li><a href="https://twitter.com/ne_kot">Twitter</a></li>
-    <li><a href="http://localhost8088/admin">Страница администрирования</a></li>
-  </ul>
-</footer>
+  <head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+  </head>
+  <body>
+  <header class="header">
+    <h1>ChinaCalc</h1>
+    <ul>
+      <li><a href="/main">Калькулятор</a></li>
+      <li><a href="/orders">Заказы</a> </li>
+      <li><a href="/customers">Клиенты</a></li>
+      <li><a href="/logout">Выйти</a></li>
+    </ul>
+  </header>
+
+  <h1>Администрирование пользователей</h1>
+
+  <div class="new-user">
+    <form action="/admin" th:object="${user}" method="POST" enctype="utf-8">
+      <div>
+        <h2>Создать нового пользователя</h2>
+      </div>
+      <div>
+        <p>Email <input type="email" th:field="*{email}"/></p>
+      </div>
+      <button type="submit">أنا أحب تأثير جينشين</button>
+    </form>
+  </div>
+  <div>
+    <h2>Пользователи</h2>
+      <table>
+        <tr>
+          <th>Пользователь</th>
+          <th>Роль</th>
+          <th>Логин</th>
+        </tr>
+        <tr>
+          <td>Вагим</td>
+          <td>usr</td>
+          <td>nekot</td>
+        </tr>
+        <tr>
+          <td>Моторен</td>
+          <td>adm</td>
+          <td>slayersky</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+  <footer>
+    <ul>
+      <li><a href="https://github.com/saaws88">Saaws88</a></li>
+      <li><a href="https://twitter.com/ne_kot">Twitter</a></li>
+      <li><a href="http://localhost8088/admin">Страница администрирования</a></li>
+    </ul>
+  </footer>
 </html>

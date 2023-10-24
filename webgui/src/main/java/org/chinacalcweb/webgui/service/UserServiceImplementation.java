@@ -4,18 +4,21 @@ import org.chinacalcweb.webgui.config.util.PassGen;
 import org.chinacalcweb.webgui.model.ChinacalcUser;
 import org.chinacalcweb.webgui.model.Role;
 import org.chinacalcweb.webgui.repo.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import lombok.RequiredArgsConstructor;
-
 @Service
-@RequiredArgsConstructor
 public class UserServiceImplementation implements UserService {
+
+  private final UserRepository userRepository;
+  private final BCryptPasswordEncoder encoder;
   
-  private UserRepository userRepository;
-  private BCryptPasswordEncoder encoder;
+  public UserServiceImplementation(UserRepository userRepository, BCryptPasswordEncoder encoder) {
+
+    this.userRepository = userRepository;
+    this.encoder = encoder;
+
+  }
 
   @Override
   public void createUser(ChinacalcUser user) {
@@ -25,6 +28,7 @@ public class UserServiceImplementation implements UserService {
       throw new RuntimeException("Пользователь с почтовым адресом " + userEmail + " уже существует");
     }
     user.setEmail(userEmail);
+    user.setUsername(userEmail);
     String password = PassGen.generatePassayPassword();
     user.setPassword(encoder.encode(password));
     user.getRoles().add(Role.USER);

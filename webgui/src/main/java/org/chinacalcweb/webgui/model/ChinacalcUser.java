@@ -32,17 +32,20 @@ import lombok.Setter;
 @EqualsAndHashCode
 public class ChinacalcUser {
 
-    @Id
-    @SequenceGenerator(name="usr_seq", sequenceName = "users_sequence", initialValue = 1, allocationSize = 10)
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
-    @Column(name="id",nullable=false,unique=true)
-    private long id;
-    @Column(name="email",nullable=true,unique=true)
-    private String email;
-    @Column(name="password",nullable=false)
-    private String password;
-    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name="user_id"))
-    @Enumerated(EnumType.STRING)
-    private Set<Role> roles = new HashSet<>();
+  @Id
+  @SequenceGenerator(name="usr_seq", sequenceName = "users_sequence", initialValue = 1, allocationSize = 10)
+  @GeneratedValue(strategy=GenerationType.SEQUENCE)
+  @Column(name="id",nullable=false,unique=true)
+  private long id;
+  @Column(name="email",nullable=true,unique=true)
+  private String email;
+  @Column(name="username",nullable=true,unique=true)
+  private String username;
+  @Column(name="password",nullable=false)
+  private String password;
+  @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+  @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name="user_id"))
+  @Enumerated(EnumType.STRING)
+  private Set<Role> roles = new HashSet<>();
+
 }
