@@ -26,9 +26,12 @@
       <div>
         <p>Email <input type="email" th:field="*{email}"/></p>
       </div>
-      <button type="submit">أنا أحب تأثير جينشين</button>
+      <button type="submit">Sign up</button>
+      <div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
+      <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
     </form>
   </div>
+
   <div>
     <h2>Пользователи</h2>
       <table>

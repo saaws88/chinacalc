@@ -5,10 +5,12 @@ import org.chinacalcweb.webgui.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.AllArgsConstructor;
 
@@ -26,9 +28,19 @@ public class AdminController {
     return "admin";
   }
 
+
+  //TODO make form return success and error messages
   @PostMapping("/admin")
-  public String createUser(@ModelAttribute ChinacalcUser user, Model model) {
+  public String createUser(@ModelAttribute("user") ChinacalcUser user, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+
+    if (bindingResult.hasErrors()) {
+      redirectAttributes.addFlashAttribute("failed", "User cannot be created");
+      return "redirect:/admin";
+    }
+
     userService.createUser(user);
-    return "admin";
+    redirectAttributes.addFlashAttribute("success", "Пользователь создан, временный пароль отправлен на " + user.getEmail());
+    return "redirect:/admin";
+  
   }
 }

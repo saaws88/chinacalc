@@ -33,7 +33,6 @@ public class UserServiceImplementation implements UserService {
     user.setPassword(encoder.encode(password));
     user.getRoles().add(Role.USER);
 
-    System.out.println(password);
     userRepository.save(user);
   }
   
