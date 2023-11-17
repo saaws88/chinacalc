@@ -1,5 +1,7 @@
 package org.chinacalcweb.webgui.service;
 
+import java.util.List;
+
 import org.chinacalcweb.webgui.config.util.PassGen;
 import org.chinacalcweb.webgui.model.ChinacalcUser;
 import org.chinacalcweb.webgui.model.Role;
@@ -34,6 +36,11 @@ public class UserServiceImplementation implements UserService {
     user.getRoles().add(Role.USER);
 
     userRepository.save(user);
+  }
+
+  @Override
+  public List<ChinacalcUser> findAll() {
+    return userRepository.findAll();  
   }
   
 }

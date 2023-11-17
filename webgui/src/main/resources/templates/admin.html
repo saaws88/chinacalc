@@ -32,23 +32,18 @@
     </form>
   </div>
 
-  <div>
+  <div class="users">
     <h2>Пользователи</h2>
-      <table>
+      <table class="users-list">
         <tr>
           <th>Пользователь</th>
+          <th>Почта</th>
           <th>Роль</th>
-          <th>Логин</th>
         </tr>
-        <tr>
-          <td>Вагим</td>
-          <td>usr</td>
-          <td>nekot</td>
-        </tr>
-        <tr>
-          <td>Моторен</td>
-          <td>adm</td>
-          <td>slayersky</td>
+        <tr th:each = "user: ${userlist}">
+          <td th:text="${user.id}"></td>
+          <td th:text="${user.email}"></td>
+          <td th:each = "roles: ${user.roles}" th:text="${roles.name}"></td>
         </tr>
       </table>
     </div>

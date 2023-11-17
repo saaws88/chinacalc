@@ -34,6 +34,7 @@ public class WebSecurityConfig {
     return new ProviderManager(authProvider);
   }
 
+  //TODO set permits
   @Bean
   protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
