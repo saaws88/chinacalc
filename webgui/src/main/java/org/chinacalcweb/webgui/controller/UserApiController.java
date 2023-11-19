@@ -28,8 +28,8 @@ public class UserApiController {
   
   @PostMapping("/addadmin")
   public ResponseEntity<ChinacalcUser> createAdmin(@RequestBody ChinacalcUser user) {
-    userService.createUser(user);
     user.getRoles().add(Role.ADMIN);
+    userService.createUser(user);
     return new ResponseEntity<ChinacalcUser>(user, HttpStatus.CREATED);
   }
 }
