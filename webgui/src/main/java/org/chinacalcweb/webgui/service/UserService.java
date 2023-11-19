@@ -9,5 +9,7 @@ public interface UserService {
   public void createUser(ChinacalcUser user);
 
   public List<ChinacalcUser> findAll();
+
+  public void deleteUserById(Long id);
   
 }

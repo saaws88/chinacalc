@@ -1,4 +1,4 @@
-package org.chinacalcweb.webgui.service;
+package org.chinacalcweb.webgui.service.Implementations;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import org.chinacalcweb.webgui.config.util.PassGen;
 import org.chinacalcweb.webgui.model.ChinacalcUser;
 import org.chinacalcweb.webgui.model.Role;
 import org.chinacalcweb.webgui.repo.UserRepository;
+import org.chinacalcweb.webgui.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,7 @@ public class UserServiceImplementation implements UserService {
   @Override
   public void createUser(ChinacalcUser user) {
     
-    String userEmail = user.getEmail();
+    String userEmail = user.getEmail().toLowerCase();
     if (userRepository.findByEmail(userEmail).isPresent()) {
       throw new RuntimeException("Пользователь с почтовым адресом " + userEmail + " уже существует");
     }
@@ -42,5 +43,12 @@ public class UserServiceImplementation implements UserService {
   public List<ChinacalcUser> findAll() {
     return userRepository.findAll();  
   }
-  
+
+  @Override
+  public void deleteUserById (Long id) {
+
+    userRepository.deleteById(id);
+    
+  }
+
 }

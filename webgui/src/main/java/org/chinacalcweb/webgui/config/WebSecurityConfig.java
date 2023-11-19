@@ -1,6 +1,6 @@
 package org.chinacalcweb.webgui.config;
 
-import org.chinacalcweb.webgui.service.ChinacalcUserDetailsService;
+import org.chinacalcweb.webgui.service.Implementations.ChinacalcUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

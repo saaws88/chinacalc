@@ -1,7 +1,6 @@
 package org.chinacalcweb.webgui.controller;
 
 import org.chinacalcweb.webgui.model.ChinacalcUser;
-import org.chinacalcweb.webgui.repo.UserRepository;
 import org.chinacalcweb.webgui.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,11 +30,16 @@ public class AdminController {
   }
 
 
-  //TODO make form return error messages
   @PostMapping("/admin")
   public String createUser(@ModelAttribute("user") ChinacalcUser user, Model model, RedirectAttributes redirectAttributes) {
+    
+    try {
+      userService.createUser(user);
+    } catch (RuntimeException re) {
+      redirectAttributes.addFlashAttribute("error", "Пользователь с почтой " + user.getEmail() + " уже существует.");
+      return "redirect:/admin";
+    }
 
-    userService.createUser(user);
     redirectAttributes.addFlashAttribute("success", "Пользователь создан, временный пароль отправлен на " + user.getEmail());
     return "redirect:/admin";
   
