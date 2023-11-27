@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.5</version>
+		<version>3.2.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.chinacalcweb</groupId>
@@ -85,7 +85,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
-          <mainClass>org.chinacalcweb.webgui.WebguiApplication</mainClass>
+          <mainClass>org.chinacalcweb.webgui.ChinacalcApp</mainClass>
         </configuration>
 			</plugin>
 		</plugins>

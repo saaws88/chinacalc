@@ -37,9 +37,9 @@ public class ChinacalcUser {
   @GeneratedValue(strategy=GenerationType.SEQUENCE)
   @Column(name="id",nullable=false,unique=true)
   private long id;
-  @Column(name="email",nullable=true,unique=true)
+  @Column(name="email",nullable=false,unique=true)
   private String email;
-  @Column(name="username",nullable=true,unique=true)
+  @Column(name="username",nullable=false,unique=true)
   private String username;
   @Column(name="password",nullable=false)
   private String password;

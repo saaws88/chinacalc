@@ -4,9 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WebguiApplication {
+public class ChinacalcWeb {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WebguiApplication.class, args);
-	}
+
+		SpringApplication.run(ChinacalcWeb.class, args);
+	
+  }
 }

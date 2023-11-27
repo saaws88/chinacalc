@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "ChinacalcWeb",
+      "request": "launch",
+      "mainClass": "org.chinacalcweb.webgui.ChinacalcWeb",
+      "projectName": "webgui"
+    },
+    {
+      "type": "java",
       "name": "WebguiApplication",
       "request": "launch",
       "mainClass": "org.chinacalcweb.webgui.WebguiApplication",

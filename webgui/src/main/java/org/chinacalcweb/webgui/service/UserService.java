@@ -11,5 +11,13 @@ public interface UserService {
   public List<ChinacalcUser> findAll();
 
   public void deleteUserById(Long id);
+
+  public ChinacalcUser getUserById(Long id);
+
+  public void updateUser(ChinacalcUser user);
+
+  public void blockUserById(Long id);
+
+  public boolean isExist(String email);
   
 }
