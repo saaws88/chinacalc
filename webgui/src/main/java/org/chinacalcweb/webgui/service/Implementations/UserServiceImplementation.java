@@ -11,18 +11,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class UserServiceImplementation implements UserService {
 
   private final UserRepository userRepository;
   private final BCryptPasswordEncoder encoder;
-  
-  public UserServiceImplementation(UserRepository userRepository, BCryptPasswordEncoder encoder) {
-
-    this.userRepository = userRepository;
-    this.encoder = encoder;
-
-  }
 
   @Override
   public void createUser(ChinacalcUser user) {
@@ -34,9 +30,13 @@ public class UserServiceImplementation implements UserService {
     user.setEmail(userEmail);
     user.setUsername(userEmail);
     String password = PassGen.generatePassayPassword();
+    System.out.println(password);
     user.setPassword(encoder.encode(password));
-    user.getRoles().add(Role.USER);
-
+    user.getRoles().add(Role.CUSTOMER);
+    user.setAccountNonExpired(true);
+    user.setCredentialsNonExpired(true);
+    user.setAccountNonLocked(true);
+    
     userRepository.save(user);
   }
 
@@ -52,16 +52,18 @@ public class UserServiceImplementation implements UserService {
 
   @Override
   public ChinacalcUser getUserById(Long id) {
-    return userRepository.findById(id).get();
+    return userRepository.findById(id).
+      orElseThrow(() -> new UsernameNotFoundException("Пользователь не найден"));
   }
 
   @Override
   public void updateUser(ChinacalcUser user) {
 
-    ChinacalcUser updatedUserEntity = userRepository.findById(user.getId()).
-      orElseThrow(() -> new UsernameNotFoundException("Пользователь не найден"));
+    ChinacalcUser updatedUserEntity = getUserById(user.getId());
 
-    if (updatedUserEntity.equals(user)) {
+      if (updatedUserEntity.getEmail().equals(user.getEmail())
+      && updatedUserEntity.getRoles().equals(user.getRoles())
+      && updatedUserEntity.getUsername().equals(user.getUsername())) {
       return;
     }
     
@@ -79,9 +81,16 @@ public class UserServiceImplementation implements UserService {
   }
 
   @Override
-  public void blockUserById(Long id) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'blockUserById'");
+  public void updateUserPassword(ChinacalcUser user) {
+
+    ChinacalcUser updatedUserEntity = getUserById(user.getId());
+    
+    String password = PassGen.generatePassayPassword();
+    System.out.println(password);
+
+    updatedUserEntity.setPassword(encoder.encode(password));
+    userRepository.save(updatedUserEntity);
+
   }
 
   @Override
@@ -90,9 +99,19 @@ public class UserServiceImplementation implements UserService {
     if (!userRepository.findByEmail(email).isPresent()) {
       return false;
     }
-
+    
     return true;
 
+  }
+
+  @Override
+  public void blockUserById(Long id) {
+    
+    ChinacalcUser updatedUserEntity = getUserById(id);
+    
+    updatedUserEntity.setCredentialsNonExpired(false);
+
+    userRepository.save(updatedUserEntity);
   }
 
 }

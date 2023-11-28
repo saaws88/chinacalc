@@ -16,11 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import lombok.AllArgsConstructor;
-
-
 @Controller
-@AllArgsConstructor
 @RequestMapping("/")
 public class AdminController {
   
@@ -34,7 +30,6 @@ public class AdminController {
     return "admin";
   }
 
-  //TODO Refactor createUser and editUser methods
   @PostMapping("/admin")
   public String createUser(@ModelAttribute("user") ChinacalcUser user, Model model, RedirectAttributes redirectAttributes) {
     
@@ -68,4 +63,31 @@ public class AdminController {
     
     return "redirect:/admin/edituser/{id}";
   }
+
+  @PostMapping("admin/deleteuser/{id}")
+  public String deleteUser(@PathVariable(value="id") Long id, RedirectAttributes redirectAttributes) {
+
+    userService.deleteUserById(id);
+
+    return "redirect:/admin";
+
+  }
+
+  @PostMapping("admin/updateuserpass/{id}")
+  public String updateUserPassword(@PathVariable(value="id") Long id, @ModelAttribute ChinacalcUser user, RedirectAttributes redirectAttributes) {
+    
+    userService.updateUserPassword(user);
+
+    return "redirect:/admin";
+  }
+
+  @PostMapping("admin/blockuser/{id}")
+  public String blockUser(@PathVariable(value="id") Long id, @ModelAttribute ChinacalcUser user, RedirectAttributes redirectAttributes) {
+    
+    userService.blockUserById(id);
+
+    return "redirect:/admin";
+  
+  }
+  
 }

@@ -22,6 +22,7 @@
               <input type="checkbox" name="roles"
               th:each="role : ${roles}"
               th:name="${role}"
+              th:text="${role}"
               th:field="*{roles}"
               th:value="${role}"
               th:checked="${#lists.contains(user.roles, role)}"/>
@@ -30,12 +31,15 @@
         </div>
         <button type="submit">Сохранить</button>
       </form>
-      <div class="formtobe">
+      <form th:action="@{/admin/updateuserpass/{id}(id=${user.getId()})}" method="post">
         <button type="submit">Сбросить пароль</button>
-      </div>
-      <div class="formtobe">
+      </form>
+      <form th:action="@{/admin/blockuser/{id}(id=${user.getId()})}" method="post">
+        <button type="submit">Заблокировать</button>
+      </form>
+      <form th:action="@{/admin/deleteuser/{id}(id=${user.getId()})}" method="post">
         <button type="submit">Удалить</button>
-      </div>
+      </form>
     </div>
     
   </body>

@@ -47,5 +47,23 @@ public class ChinacalcUser {
   @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name="user_id"))
   @Enumerated(EnumType.STRING)
   private Set<Role> roles = new HashSet<>();
+  @Column(name="acc_not_expired",nullable=false)
+  private boolean isAccountNonExpired;
+  @Column(name="acc_not_locked",nullable=false)
+  private boolean isAccountNonLocked; 
+  @Column(name="creds_not_expired",nullable=false)
+  private boolean isCredentialsNonExpired;
+ 
+  public boolean getIsAccountNonExpired() {
+    return this.isAccountNonExpired;
+  }
+
+  public boolean getIsAccountNonLocked() {
+    return this.isAccountNonLocked;
+  }
+
+  public boolean getIsCredentialsNonExpired() {
+    return this.isCredentialsNonExpired;
+  }
 
 }
