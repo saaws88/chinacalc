@@ -6,6 +6,7 @@ import org.chinacalcweb.webgui.config.util.PassGen;
 import org.chinacalcweb.webgui.model.ChinacalcUser;
 import org.chinacalcweb.webgui.model.Role;
 import org.chinacalcweb.webgui.repo.UserRepository;
+import org.chinacalcweb.webgui.service.EmailService;
 import org.chinacalcweb.webgui.service.UserService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,18 +20,19 @@ public class UserServiceImplementation implements UserService {
 
   private final UserRepository userRepository;
   private final BCryptPasswordEncoder encoder;
+  private final EmailService emailService;
 
   @Override
   public void createUser(ChinacalcUser user) {
     
     String userEmail = user.getEmail().toLowerCase();
-    if (userRepository.findByEmail(userEmail).isPresent()) {
+    if (isExist(userEmail)) {
       throw new RuntimeException("Пользователь с почтовым адресом " + userEmail + " уже существует");
     }
     user.setEmail(userEmail);
     user.setUsername(userEmail);
     String password = PassGen.generatePassayPassword();
-    System.out.println(password);
+    emailService.sendTemporaryPassword(userEmail, password);
     user.setPassword(encoder.encode(password));
     user.getRoles().add(Role.CUSTOMER);
     user.setAccountNonExpired(true);
@@ -86,8 +88,7 @@ public class UserServiceImplementation implements UserService {
     ChinacalcUser updatedUserEntity = getUserById(user.getId());
     
     String password = PassGen.generatePassayPassword();
-    System.out.println(password);
-
+    emailService.sendTemporaryPassword(updatedUserEntity.getEmail(), password);
     updatedUserEntity.setPassword(encoder.encode(password));
     userRepository.save(updatedUserEntity);
 

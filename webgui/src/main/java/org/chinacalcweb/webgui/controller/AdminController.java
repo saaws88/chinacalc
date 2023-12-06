@@ -33,8 +33,9 @@ public class AdminController {
   @PostMapping("/admin")
   public String createUser(@ModelAttribute("user") ChinacalcUser user, Model model, RedirectAttributes redirectAttributes) {
     
-    if (userService.isExist(user.getEmail())){
-      redirectAttributes.addFlashAttribute("error", "Пользователь с почтой " + user.getEmail() + " уже существует.");
+    if (userService.isExist(user.getEmail().toLowerCase())){
+      redirectAttributes.addFlashAttribute("error", "Пользователь с почтой " + user.getEmail().toLowerCase() + " уже существует.");
+      return "redirect:/admin";
     }
     userService.createUser(user);
 
