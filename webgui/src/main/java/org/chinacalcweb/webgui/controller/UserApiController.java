@@ -49,6 +49,7 @@ public class UserApiController {
   String sendEmail(@RequestParam String to) {
 
     emailService.sendTemporaryPassword(to, "Amogus");
+  
     return "Message sent";
   
   }

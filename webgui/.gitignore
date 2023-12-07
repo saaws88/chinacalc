@@ -1,5 +1,6 @@
 HELP.md
 target/
+tmp/
 /.idea/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
@@ -33,3 +34,5 @@ build/
 .vscode/
 
 *.properties
+*.yml
+

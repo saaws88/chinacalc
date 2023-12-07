@@ -28,6 +28,9 @@
               th:checked="${#lists.contains(user.roles, role)}"/>
           </label>
           </div>
+          <p th:switch="${user.isCredentialsNonExpired}">Статус 
+            <span th:case="true">Активен</span>
+            <span th:case="false">Заблокирован</span></div>
         </div>
         <button type="submit">Сохранить</button>
       </form>

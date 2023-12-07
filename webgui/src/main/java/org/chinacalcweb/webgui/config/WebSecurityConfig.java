@@ -38,15 +38,18 @@ public class WebSecurityConfig {
   @Bean
   protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
-          .csrf(csrf->csrf.disable())
-          .authorizeHttpRequests((requests) -> requests            
-            .requestMatchers("/", "/main", "api/v1/**", "/signup").permitAll()
-            .anyRequest().authenticated()
+          .csrf(csrf -> csrf.disable())
+          .authorizeHttpRequests(requests -> requests            
+              .requestMatchers("/admin/**").hasAuthority("ADMIN")
+              .requestMatchers("/orders/**", "/customers/**").hasAuthority("MANAGER")
+              .requestMatchers("/main").hasAuthority("CUSTOMER")
+              .requestMatchers("/", "/home", "/error").permitAll()
+              .anyRequest().authenticated()
           )
-          .formLogin(login->login
-            .loginPage("/login")
-            .defaultSuccessUrl("/home")
-            .permitAll())
+          .formLogin(login -> login
+              .loginPage("/login")
+              .defaultSuccessUrl("/home")
+              .permitAll())
           .logout(logout -> logout
               .permitAll());
           
