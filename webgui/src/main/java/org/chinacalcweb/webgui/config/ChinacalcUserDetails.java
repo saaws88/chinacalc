@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.chinacalcweb.webgui.model.ChinacalcUser;
-import org.chinacalcweb.webgui.model.Role;
+import org.chinacalcweb.webgui.model.Enums.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

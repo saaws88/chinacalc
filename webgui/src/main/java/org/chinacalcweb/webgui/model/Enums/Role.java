@@ -1,4 +1,4 @@
-package org.chinacalcweb.webgui.model;
+package org.chinacalcweb.webgui.model.Enums;
 
 public enum Role {
   ADMIN,

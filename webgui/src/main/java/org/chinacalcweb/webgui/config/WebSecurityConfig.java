@@ -34,27 +34,24 @@ public class WebSecurityConfig {
     return new ProviderManager(authProvider);
   }
 
-  //TODO set permits
   @Bean
   protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
-          .csrf(csrf -> csrf.disable())
-          .authorizeHttpRequests(requests -> requests            
-              .requestMatchers("/admin/**").hasAuthority("ADMIN")
-              .requestMatchers("/orders/**", "/customers/**").hasAuthority("MANAGER")
-              .requestMatchers("/main").hasAuthority("CUSTOMER")
-              .requestMatchers("/", "/home", "/error").permitAll()
-              .anyRequest().authenticated()
-          )
-          .formLogin(login -> login
-              .loginPage("/login")
-              .defaultSuccessUrl("/home")
-              .permitAll())
-          .logout(logout -> logout
-              .permitAll());
-          
+        .csrf(csrf -> csrf.disable())
+        .authorizeHttpRequests(requests -> requests
+            .requestMatchers("/admin/**").hasAuthority("ADMIN")
+            .requestMatchers("/orders/**", "/customers/**").hasAuthority("MANAGER")
+            .requestMatchers("/main").hasAuthority("CUSTOMER")
+            .requestMatchers("/", "/home", "/error", "/api/**").permitAll()
+            .anyRequest().authenticated())
+        .formLogin(login -> login
+            .loginPage("/login")
+            .defaultSuccessUrl("/home")
+            .permitAll())
+        .logout(logout -> logout
+            .permitAll());
+
     return http.build();
   }
 
-    
 }

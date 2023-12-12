@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8">
-    <title>Admin</title>
-    <link rel="stylesheet" href="../static/css/style.css">
-  </head>
-  <body>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Admin</title>
+  <link rel="stylesheet" href="../static/css/style.css">
+</head>
+
+<body>
   <header class="header">
     <h1>ChinaCalc</h1>
     <ul>
@@ -25,7 +27,7 @@
         <h2>Создать нового пользователя</h2>
       </div>
       <div>
-        <p>Email <input type="email" th:field="*{email}"/></p>
+        <p>Email <input type="email" th:field="*{email}" /></p>
       </div>
       <button type="submit">Создать пользователя</button>
       <div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
@@ -36,26 +38,27 @@
 
   <div class="users">
     <h2>Пользователи</h2>
-      <table class="users-list">
-        
-        <tr>
-          <td>ID</td>
-          <td>Email</td>
-          <td>Роли</td>
-        </tr>
-        <tr th:each = "user: ${userlist}">
-          <td><a th:href="@{/admin/edituser/{id}(id=${user.id})}" th:text="${user.id}"></td>
-          <td th:text="${user.email}">Email</td>
-          <td th:each = "roles: ${user.roles}" th:text="${roles.name}">Роли</td>
-        </tr>
-      </table>
-    </div>
-  </body>
-  <footer>
-    <ul>
-      <li><a href="https://github.com/saaws88">Saaws88</a></li>
-      <li><a href="https://twitter.com/ne_kot">Twitter</a></li>
-      <li><a href="http://localhost:8088/admin">Страница администрирования</a></li>
-    </ul>
-  </footer>
+    <table class="users-list">
+
+      <tr>
+        <td>ID</td>
+        <td>Email</td>
+        <td>Роли</td>
+      </tr>
+      <tr th:each="user: ${userlist}">
+        <td><a th:href="@{/admin/edituser/{id}(id=${user.id})}" th:text="${user.id}"></td>
+        <td th:text="${user.email}">Email</td>
+        <td th:each="roles: ${user.roles}" th:text="${roles.name}">Роли</td>
+      </tr>
+    </table>
+  </div>
+</body>
+<footer>
+  <ul>
+    <li><a href="https://github.com/saaws88">Saaws88</a></li>
+    <li><a href="https://twitter.com/ne_kot">Twitter</a></li>
+    <li><a href="http://localhost:8088/admin">Страница администрирования</a></li>
+  </ul>
+</footer>
+
 </html>

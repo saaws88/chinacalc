@@ -1,6 +1,6 @@
 package org.chinacalcweb.webgui.service.Implementations;
 
-import org.chinacalcweb.webgui.service.EmailService;
+import org.chinacalcweb.webgui.service.util.EmailService;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -23,6 +23,6 @@ public class EmailServiceImplementation implements EmailService {
     message.setText("Ваш пароль для входа в Chinacalc " + password);
     emailSender.send(message);
 
-  } 
-  
+  }
+
 }

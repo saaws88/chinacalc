@@ -1,9 +1,9 @@
-package org.chinacalcweb.webgui.controller;
+package org.chinacalcweb.webgui.controller.API_V1;
 
 import org.chinacalcweb.webgui.model.ChinacalcUser;
-import org.chinacalcweb.webgui.model.Role;
-import org.chinacalcweb.webgui.service.EmailService;
+import org.chinacalcweb.webgui.model.Enums.Role;
 import org.chinacalcweb.webgui.service.UserService;
+import org.chinacalcweb.webgui.service.util.EmailService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,7 +20,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @RequestMapping("/api/v1/admin/users")
 public class UserApiController {
-  
+
   private final UserService userService;
   private final EmailService emailService;
 
@@ -29,7 +29,7 @@ public class UserApiController {
     userService.createUser(user);
     return new ResponseEntity<ChinacalcUser>(user, HttpStatus.CREATED);
   }
-  
+
   @PostMapping("/addadmin")
   public ResponseEntity<ChinacalcUser> createAdmin(@RequestBody ChinacalcUser user) {
     user.getRoles().add(Role.ADMIN);
@@ -39,7 +39,7 @@ public class UserApiController {
 
   @DeleteMapping("/delete/{id}")
   public ResponseEntity<ChinacalcUser> deleteUserById(@PathVariable("id") Long id) {
-    
+
     userService.deleteUserById(id);
 
     return new ResponseEntity<>(HttpStatus.OK);
@@ -49,9 +49,9 @@ public class UserApiController {
   String sendEmail(@RequestParam String to) {
 
     emailService.sendTemporaryPassword(to, "Amogus");
-  
+
     return "Message sent";
-  
+
   }
-   
+
 }
