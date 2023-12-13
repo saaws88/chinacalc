@@ -23,5 +23,5 @@ public class CurrencyEntity implements Serializable {
   @AccessType(Type.PROPERTY)
   private String id;
   private String rates;
-  
+
 }

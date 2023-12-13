@@ -16,17 +16,17 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChinacalcUserDetails implements UserDetails{
+public class ChinacalcUserDetails implements UserDetails {
 
   private ChinacalcUser user;
 
-@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		Set<Role> roles = user.getRoles();
-		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-		roles.forEach(role -> authorities.add(new SimpleGrantedAuthority(role.name())));
-		return authorities;
-	}
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    Set<Role> roles = user.getRoles();
+    List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+    roles.forEach(role -> authorities.add(new SimpleGrantedAuthority(role.name())));
+    return authorities;
+  }
 
   @Override
   public String getPassword() {

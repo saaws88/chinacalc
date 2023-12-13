@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 
-
-
 @RestController
 @Controller
 @AllArgsConstructor
@@ -30,20 +28,19 @@ public class CurrencyController {
   private CurrencyService currencyService;
 
   @PostMapping("/add")
-  public ResponseEntity<CurrencyEntity> addCurrency (@RequestBody CurrencyEntity currency) {
-      
+  public ResponseEntity<CurrencyEntity> addCurrency(@RequestBody CurrencyEntity currency) {
+
     currencyService.addCurrencyRecord(currency);
-    
+
     return new ResponseEntity<CurrencyEntity>(currency, HttpStatus.CREATED);
-  
+
   }
 
   @GetMapping("/all")
   public List<CurrencyEntity> getAll() {
-    
+
     return currencyService.findAll();
-  
+
   }
-  
-  
+
 }
