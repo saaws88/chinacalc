@@ -29,28 +29,33 @@
     <label for="manager-filter">Менеджер</label>
     <input type="text" id="manager-filter" name="manager-filter">
   </fieldset>
-  <div class="order-table">
+  <div class="customers-table">
     <table>
       <tr>
-        <th>ID клиента</th>
-        <th>Дата создания</th>
+        <th>Id</th>
         <th>Наименование</th>
-        <th>Тип клиента</th>
-        <th>Менеджер</th>
+        <th>Частное лицо</th>
+        <th>ИНН</th>
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Отчество</th>
+        <th>Город</th>
+        <th>Телефон</th>
+        <th>Email</th>
+        <th>Категория</th>
       </tr>
-      <tr>
-        <td>1936</td>
-        <td>22.08.1992</td>
-        <td>ООО "Газпром-Колывань"</td>
-        <td>Новый</td>
-        <td>Олег Тиньков</td>
-      </tr>
-      <tr>
-        <td>1937</td>
-        <td>22.08.1992</td>
-        <td>ООО "Гогельс Лимитед"</td>
-        <td>Повторный</td>
-        <td>Некот Вадимович</td>
+      <tr th:each="customer: ${customerslist}">
+        <td th:text="${customer.id}"></td>
+        <td th:text="${customer.customerName}"></td>
+        <td th:text="${customer.privatePerson}"></td>
+        <td th:text="${customer.individualTaxpayerNumber}"></td>
+        <td th:text="${customer.contactLastName}"></td>
+        <td th:text="${customer.contactFirstName}"></td>
+        <td th:text="${customer.contactPatronymic}"></td>
+        <td th:text="${customer.city}"></td>
+        <td th:text="${customer.phoneNumber}"></td>
+        <td th:text="${customer.email}"></td>
+        <td th:text="${customer.customerCategory}"></td>
       </tr>
     </table>
   </div>

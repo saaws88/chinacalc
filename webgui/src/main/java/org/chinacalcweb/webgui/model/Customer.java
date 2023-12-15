@@ -1,16 +1,12 @@
 package org.chinacalcweb.webgui.model;
 
-import java.util.List;
-
 import org.chinacalcweb.webgui.model.Enums.CustomerCategory;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -51,6 +47,4 @@ public class Customer {
   private CustomerCategory category;
   @Column(name = "taxpayer_number")
   private Long individualTaxpayerNumber;
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
-  private List<Order> orders;
 }

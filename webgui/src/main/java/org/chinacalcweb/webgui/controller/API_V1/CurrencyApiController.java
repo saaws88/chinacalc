@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @AllArgsConstructor
 @NoArgsConstructor
 @RequestMapping("/api/v1/currency")
-public class CurrencyController {
+public class CurrencyApiController {
 
   @Autowired
   private CurrencyService currencyService;

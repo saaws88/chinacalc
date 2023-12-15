@@ -34,7 +34,7 @@ public class UserServiceImplementation implements UserService {
     String password = PassGen.generatePassayPassword();
     emailService.sendTemporaryPassword(userEmail, password);
     user.setPassword(encoder.encode(password));
-    user.getRoles().add(Role.CUSTOMER);
+    user.getRoles().add(Role.MANAGER);
     user.setAccountNonExpired(true);
     user.setCredentialsNonExpired(true);
     user.setAccountNonLocked(true);

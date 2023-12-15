@@ -2,6 +2,15 @@ package org.chinacalcweb.webgui.model;
 
 import org.chinacalcweb.webgui.model.Enums.PackageType;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Parcel {
   
   private long purchaseCostRur;
