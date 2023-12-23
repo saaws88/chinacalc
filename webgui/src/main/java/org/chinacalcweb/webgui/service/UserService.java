@@ -20,6 +20,6 @@ public interface UserService {
 
   public void updateUserPassword(ChinacalcUser user);
 
-  public boolean isExist(String email);
+  public boolean isEmailExist(String email);
 
 }

@@ -26,7 +26,7 @@ public class UserServiceImplementation implements UserService {
   public void createUser(ChinacalcUser user) {
 
     String userEmail = user.getEmail().toLowerCase();
-    if (isExist(userEmail)) {
+    if (isEmailExist(userEmail)) {
       throw new RuntimeException("Пользователь с почтовым адресом " + userEmail + " уже существует");
     }
     user.setEmail(userEmail);
@@ -94,7 +94,7 @@ public class UserServiceImplementation implements UserService {
   }
 
   @Override
-  public boolean isExist(String email) {
+  public boolean isEmailExist(String email) {
 
     if (!userRepository.findByEmail(email).isPresent()) {
       return false;

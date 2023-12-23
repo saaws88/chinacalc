@@ -34,7 +34,7 @@ public class AdminController {
   public String createUser(@ModelAttribute("user") ChinacalcUser user, Model model,
       RedirectAttributes redirectAttributes) {
 
-    if (userService.isExist(user.getEmail().toLowerCase())) {
+    if (userService.isEmailExist(user.getEmail().toLowerCase())) {
       redirectAttributes.addFlashAttribute("error",
           "Пользователь с почтой " + user.getEmail().toLowerCase() + " уже существует.");
       return "redirect:/admin";
@@ -59,34 +59,39 @@ public class AdminController {
 
   }
 
+  //TODO Setup redirect and redirect attribute
   @PostMapping("admin/updateuser/{id}")
   public String updateUser(@PathVariable(value = "id") Long id, @ModelAttribute ChinacalcUser user,
-      RedirectAttributes redirectAttributes) {
-
+  RedirectAttributes redirectAttributes) {
+    
     userService.updateUser(user);
     redirectAttributes.addFlashAttribute("editSuccess", "Пользователь " + user.getEmail() + " успешно сохранен");
-
+    
     return "redirect:/admin/edituser/{id}";
   }
-
+  
+  
+  //TODO Setup redirect and redirect attribute
   @PostMapping("admin/deleteuser/{id}")
   public String deleteUser(@PathVariable(value = "id") Long id, RedirectAttributes redirectAttributes) {
-
+    
     userService.deleteUserById(id);
-
+    
     return "redirect:/admin";
-
+    
   }
-
+  
+  //TODO Setup redirect and redirect attribute
   @PostMapping("admin/updateuserpass/{id}")
   public String updateUserPassword(@PathVariable(value = "id") Long id, @ModelAttribute ChinacalcUser user,
-      RedirectAttributes redirectAttributes) {
-
+  RedirectAttributes redirectAttributes) {
+    
     userService.updateUserPassword(user);
-
+    
     return "redirect:/admin";
   }
-
+  
+  //TODO Setup redirect and redirect attribute
   @PostMapping("admin/blockuser/{id}")
   public String blockUser(@PathVariable(value = "id") Long id, @ModelAttribute ChinacalcUser user,
       RedirectAttributes redirectAttributes) {

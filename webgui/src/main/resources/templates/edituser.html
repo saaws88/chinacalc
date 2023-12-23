@@ -4,10 +4,73 @@
 <head>
   <meta charset="UTF-8">
   <title>Редактирование пользователя</title>
-  <link rel="stylesheet" href="../static/css/style.css">
+
+  <style>
+    html {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    header>ul {
+      display: flex;
+      list-style-type: none;
+      padding: 0px;
+      margin: 10px 0px;
+      column-gap: 10px;
+    }
+
+    header>ul>li>a,
+    header>ul>li>a:visited {
+      color: #fff;
+      font-size: 13px;
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 4px;
+      padding: 5px 20px;
+      background-color: #fe5555;
+      border: 1px solid #e61b1b;
+      transition: .5s;
+    }
+
+    header>ul>li>a:hover {
+      background-color: #e61b1b;
+    }
+
+    body {
+      padding: 30px 40px;
+    }
+
+    * {
+      font-family: 'Inter', sans-serif;
+    }
+
+    h1 {
+      font-weight: 900;
+      font-size: 40px;
+      color: #4d4d4d;
+
+      margin: 20px 0px 10px 0px;
+      padding: 0px;
+    }
+
+    button {
+      color: #fff;
+      font-size: 13px;
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 2px;
+      padding: 5px 20px;
+      margin: 5px 20px;
+      background-color: #fe5555;
+      border: 1px solid #e61b1b;
+      transition: .5s;
+    }
+  </style>
 </head>
 <header>
-  <a href="/admin">Назад</a>
+  <ul>
+    <li><a href="/admin">Назад</a></li>
+  </ul>
 </header>
 
 <body>
@@ -17,7 +80,7 @@
         <h2>Редактирование пользователя</h2>
       </div>
       <div>
-        <p>Id пользователя: <span th:text="${user.id}"></span></p>
+        <h3>Id пользователя: <span th:text="${user.id}"></span></h3>
         <p>Email <input type="email" th:field="*{email}" th:value="${user.email}" /></p>
         <div class="role-selector">
           <label>Роли:

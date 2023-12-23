@@ -40,8 +40,7 @@ public class WebSecurityConfig {
         .csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(requests -> requests
             .requestMatchers("/admin/**").hasAuthority("ADMIN")
-            .requestMatchers("/orders/**", "/customers/**").hasAuthority("MANAGER")
-            .requestMatchers("/main").hasAuthority("CUSTOMER")
+            .requestMatchers("/orders/**", "/customers/**", "/main").hasAuthority("MANAGER")
             .requestMatchers("/", "/home", "/error", "/api/**").permitAll()
             .anyRequest().authenticated())
         .formLogin(login -> login

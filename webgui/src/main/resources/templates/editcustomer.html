@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Редактирование пользователя</title>
+
+  <style>
+    html {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    header>ul {
+      display: flex;
+      list-style-type: none;
+      padding: 0px;
+      margin: 10px 0px;
+      column-gap: 10px;
+    }
+
+    header>ul>li>a,
+    header>ul>li>a:visited {
+      color: #fff;
+      font-size: 13px;
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 4px;
+      padding: 5px 20px;
+      background-color: #fe5555;
+      border: 1px solid #e61b1b;
+      transition: .5s;
+    }
+
+    header>ul>li>a:hover {
+      background-color: #e61b1b;
+    }
+
+    body {
+      padding: 30px 40px;
+    }
+
+    * {
+      font-family: 'Inter', sans-serif;
+    }
+
+    h1 {
+      font-weight: 900;
+      font-size: 40px;
+      color: #4d4d4d;
+
+      margin: 20px 0px 10px 0px;
+      padding: 0px;
+    }
+
+    button {
+      color: #fff;
+      font-size: 13px;
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 2px;
+      padding: 5px 20px;
+      margin: 5px 20px;
+      background-color: #fe5555;
+      border: 1px solid #e61b1b;
+      transition: .5s;
+    }
+  </style>
+</head>
+<header>
+  <ul>
+    <li><a href="/customers">Назад</a></li>
+  </ul>
+</header>
+
+<body>
+  <div class="edit-user">
+    <div>
+      <h2>Редактирование клиента</h2>
+    </div>
+    <div>
+      <h3>Id клиента: <span th:text="${customer.id}"></span></h3>
+      <p>ИНН <input type="text" th:text="*{individualTaxpayerNumber}" th:value="${customer.individualTaxpayerNumber}" />
+      </p>
+      <label>Тип клиента:
+        <input type="checkbox" th:checked="${customer.isPrivatePerson ? true : false}" th:text="ЧЛ"/>
+        <input type="checkbox" th:checked="${customer.isPrivatePerson ? false : true}" th:text="ЮЛ"/>
+      </label>
+      <p>Наименование (для ЮЛ) <input type="text" th:value="${customer.customerName}" />
+      </p>
+      <div class="contact-person">
+        <h3>Контактное лицо</h3>
+        <p>Фамилия <input type="text" th:value="${customer.contactLastName}" /></p>
+        <p>Имя <input type="text" th:value="${customer.contactFirstName}" /></p>
+        <p>Отчество <input type="text" th:value="${customer.contactPatronymic}" /></p>
+      </div>
+      <div class="contact-info">
+        <h3>Контактные данные</h3>
+        <p>Город <input type="text" th:value="${customer.city}" /></p>
+        <p>Email <input type="text" th:value="${customer.email}" /></p>
+        <p>Телефон <input type="text" th:value="${customer.phoneNumber}" /></p>
+      </div>
+      <form th:action="@{/customers/updatecustomer}" th:object="${customer}" method="post" enctype="utf-8">
+        <button type="submit">Сохранить</button>
+      </form>
+    </div>
+
+    <form th:action="@{/admin/deletecustomer/{id}(id=${customer.getId()})}" method="post">
+      <button type="submit">Удалить</button>
+    </form>
+  </div>
+
+</body>
