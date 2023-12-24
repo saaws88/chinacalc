@@ -75,26 +75,26 @@
 
 <body>
   <div class="edit-user">
-    <form th:action="@{/admin/updateuser/{id}(id=${user.getId()})}" th:object="${user}" method="post" enctype="utf-8">
-      <div>
-        <h2>Редактирование пользователя</h2>
+    <form th:action="@{/admin/updateuser}" th:object="${user}" method="post" enctype="utf-8">
+          <div>
+            <h2>Редактирование пользователя</h2>
+          </div>
+          <div>
+            <h3>Id пользователя: <span th:text="${user.id}"></span></h3>
+            <p>Email <input type="email" th:field="*{email}" th:value="${user.email}" /></p>
+            <div class="role-selector">
+              <label>Роли:
+                <input type="checkbox" name="roles" th:each="role : ${roles}" th:name="${role}" th:text="${role}"
+                  th:field="*{roles}" th:value="${role}" th:checked="${#lists.contains(user.roles, role)}" />
+              </label>
+            </div>
+            <p th:switch="${user.isCredentialsNonExpired}">Статус
+              <span th:case="true">Активен</span>
+              <span th:case="false">Заблокирован</span>
+          </div>
       </div>
-      <div>
-        <h3>Id пользователя: <span th:text="${user.id}"></span></h3>
-        <p>Email <input type="email" th:field="*{email}" th:value="${user.email}" /></p>
-        <div class="role-selector">
-          <label>Роли:
-            <input type="checkbox" name="roles" th:each="role : ${roles}" th:name="${role}" th:text="${role}"
-              th:field="*{roles}" th:value="${role}" th:checked="${#lists.contains(user.roles, role)}" />
-          </label>
-        </div>
-        <p th:switch="${user.isCredentialsNonExpired}">Статус
-          <span th:case="true">Активен</span>
-          <span th:case="false">Заблокирован</span>
-      </div>
-  </div>
-  <button type="submit">Сохранить</button>
-  </form>
+      <button type="submit">Сохранить</button>
+    </form>
   <form th:action="@{/admin/updateuserpass/{id}(id=${user.getId()})}" method="post">
     <button type="submit">Сбросить пароль</button>
   </form>

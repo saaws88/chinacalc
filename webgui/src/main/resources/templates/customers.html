@@ -195,7 +195,7 @@
       <tr>
         <td>Id</td>
         <td>Наименование</td>
-        <td>Частное лицо</td>
+        <td>Тип клиента</td>
         <td>ИНН</td>
         <td>Фамилия</td>
         <td>Имя</td>
@@ -206,9 +206,9 @@
         <td>Категория</td>
       </tr>
       <tr th:each="customer: ${customerslist}">
-        <td th:text="${customer.id}">{.id}</td>
+        <td><a th:href="@{/customers/editcustomer/{id}(id=${customer.id})}" th:text="${customer.id}"></a></td>
         <td th:text="${customer.customerName}">{.customerName}</td>
-        <td th:text="${customer.privatePerson}">{.privatePerson}</td>
+        <td th:text="${customer.isPrivatePerson ? 'Частное лицо' : 'Юр.лицо'}">{.privatePerson}</td>
         <td th:text="${customer.individualTaxpayerNumber}">{.individualTaxpayerNumber}</td>
         <td th:text="${customer.contactLastName}">{.contactLastName}</td>
         <td th:text="${customer.contactFirstName}">{.contactFirstName}</td>

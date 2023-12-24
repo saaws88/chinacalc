@@ -28,7 +28,7 @@ public class Customer {
   @Column(name = "id", nullable = false, unique = true)
   private long id;
   @Column(name = "is_private_person", nullable = false)
-  private boolean isPrivatePerson;
+  private boolean privatePerson;
   @Column(name = "customer_name", nullable = false)
   private String customerName;
   @Column(name = "contact_last_name", nullable = false)

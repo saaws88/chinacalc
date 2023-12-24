@@ -51,20 +51,15 @@ public class CustomerController {
   
   }
 
-  @PostMapping("/updatecustomer/{id}")
-  public String createCustomer(@PathVariable(value = "id") Long id, @ModelAttribute Customer customer, Model model) {
+  @PostMapping("/updatecustomer")
+  public String createOrUpdateCustomer(Long id, Model model, @ModelAttribute("customer") Customer customer) {
     
-    customerService.createCustomer(customer);
+    model.addAttribute("customer", customer);
+  
+    customerService.createOrUpdateCustomer(customer);
 
-    return "editcustomer";
-  }
-
-  @PostMapping("/editcustomer/{id}")
-  public String postMethodName(@ModelAttribute Customer customer, Model model) {
+    return "redirect:/customers";
     
-    customerService.updateCustomer(customer);
-
-    return "editcustomer";
   }
   
   

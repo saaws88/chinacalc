@@ -14,8 +14,8 @@ public interface CustomerService {
 
   public Customer getCustomerById(Long id);
   
-  public Customer getCustomerByIndividualTaxpayerNumber(Long individualTaxpayerNumber);
-  
   public void updateCustomer(Customer customer);
+
+  public void createOrUpdateCustomer(Customer customer);
 
 }
