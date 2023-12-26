@@ -57,12 +57,6 @@ public class CustomerServiceImplementation implements CustomerService {
 
   }
 
-  @Override
-  public Customer getCustomerByIndividualTaxpayerNumber(Long itn) {
-    return customerRepository.findByIndividualTaxpayerNumber(itn)
-        .orElseThrow(() -> new UsernameNotFoundException("Клиент не найден"));
-  }
-
   //TODO Get update customer method right
   @Override
   public void updateCustomer(Customer customer) {
@@ -92,7 +86,6 @@ public class CustomerServiceImplementation implements CustomerService {
     updatedCustomer.setPhoneNumber(customer.getPhoneNumber());
     updatedCustomer.setIndividualTaxpayerNumber(customer.getIndividualTaxpayerNumber());
 
-    updatedCustomer.setCategory(customer.getCategory());
 
     customerRepository.save(updatedCustomer);
 

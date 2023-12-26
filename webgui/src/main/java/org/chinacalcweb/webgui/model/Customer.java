@@ -46,5 +46,5 @@ public class Customer {
   @Column(name = "customer_category", nullable = false)
   private CustomerCategory category;
   @Column(name = "taxpayer_number")
-  private Long individualTaxpayerNumber;
+  private String individualTaxpayerNumber;
 }

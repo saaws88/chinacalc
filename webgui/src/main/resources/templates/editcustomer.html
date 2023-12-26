@@ -79,10 +79,10 @@
       <h2>Редактирование клиента</h2>
     </div>
     <div>
-      <form th:action="@{/customers/updatecustomer}" th:object="${customer}" method="post" enctype="utf-8">
+      <form th:action="@{/customers/updatecustomer/{id}(id=${customer.getId()})}" th:object="${customer}" method="post" enctype="utf-8">
         <h3>Id клиента: <span th:text="${customer.id}"></span></h3>
-        <p>ИНН <input type="text" th:text="${individualTaxpayerNumber}" th:field="*{individualTaxpayerNumber}"
-            th:value="${customer.individualTaxpayerNumber}" />
+        <p>ИНН <input type="text" required th:text="${individualTaxpayerNumber}" th:field="*{individualTaxpayerNumber}"
+            th:value="${customer.individualTaxpayerNumber}" pattern="[0-9]{10-12}"/>
         </p>
         <label>Частное лицо:
           <input type="checkbox" th:field="*{privatePerson}" th:checked="${customer.isPrivatePerson ? true : false}"/>
@@ -91,22 +91,22 @@
         </p>
         <div class="contact-person">
           <h3>Контактное лицо</h3>
-          <p>Фамилия <input type="text" th:field="*{contactLastName}" th:value="${customer.contactLastName}" /></p>
-          <p>Имя <input type="text" th:field="*{contactFirstName}" th:value=" ${customer.contactFirstName}" /></p>
-          <p>Отчество <input type="text" th:field="*{contactPatronymic}" th:value=" ${customer.contactPatronymic}" />
+          <p>Фамилия <input type="text" required th:field="*{contactLastName}" th:value="${customer.contactLastName}" pattern="[А-Яа-яЁё]"/></p>
+          <p>Имя <input type="text" required th:field="*{contactFirstName}" th:value=" ${customer.contactFirstName}" pattern="[А-Яа-яЁё]"/></p>
+          <p>Отчество (опционально)<input type="text" th:field="*{contactPatronymic}" th:value=" ${customer.contactPatronymic}" pattern="[А-Яа-яЁё]"/>
           </p>
         </div>
         <div class="contact-info">
           <h3>Контактные данные</h3>
-          <p>Город <input type="text" th:field="*{city}" th:value="${customer.city}" /></p>
-          <p>Email <input type="text" th:field="*{email}" th:value=" ${customer.email}" /></p>
-          <p>Телефон <input type="text" th:field="*{phoneNumber}" th:value=" ${customer.phoneNumber}" /></p>
+          <p>Город <input type="text" required th:field="*{city}" th:value="${customer.city}" pattern="[А-Яа-яЁё]"/></p>
+          <p>Email <input type="email" required th:field="*{email}" th:value=" ${customer.email}" /></p>
+          <p>Телефон <input type="tel"  required th:field="*{phoneNumber}"  th:value=" ${customer.phoneNumber}" pattern="[0-9]{11}"/></p>
         </div>
         <button type="submit">Сохранить</button>
       </form>
     </div>
 
-    <form th:action="@{/admin/deletecustomer/{id}(id=${customer.getId()})}" method="post">
+    <form th:action="@{/customers/deletecustomer/{id}(id=${customer.getId()})}" method="post">
       <button type="submit">Удалить</button>
     </form>
   </div>

@@ -51,8 +51,8 @@ public class CustomerController {
   
   }
 
-  @PostMapping("/updatecustomer")
-  public String createOrUpdateCustomer(Long id, Model model, @ModelAttribute("customer") Customer customer) {
+  @PostMapping("/updatecustomer/{id}")
+  public String createOrUpdateCustomer(@PathVariable(value = "id")Long id, Model model, @ModelAttribute("customer") Customer customer) {
     
     model.addAttribute("customer", customer);
   
@@ -60,6 +60,15 @@ public class CustomerController {
 
     return "redirect:/customers";
     
+  }
+
+  @PostMapping("/deletecustomer/{id}")
+  public String deleteCustomer(@PathVariable(value = "id")Long id, Model model, @ModelAttribute("customer") Customer customer) {
+    
+    customerService.deleteCustomerById(id);
+
+    return "redirect:/customers";
+
   }
   
   
