@@ -1,0 +1,63 @@
+package com.saaws88.chinacalc.infrastructure.config;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+
+import com.saaws88.chinacalc.domain.model.user.ChinacalcUser;
+import com.saaws88.chinacalc.domain.model.user.enumerated.Role;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Component
+public class ChinacalcUserDetails implements UserDetails {
+
+  private ChinacalcUser user;
+
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    Set<Role> roles = user.getRoles();
+    List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+    roles.forEach(role -> authorities.add(new SimpleGrantedAuthority(role.name())));
+    return authorities;
+  }
+
+  @Override
+  public String getPassword() {
+    return user.getPassword();
+  }
+
+  @Override
+  public String getUsername() {
+    return user.getUsername();
+  }
+
+  @Override
+  public boolean isAccountNonExpired() {
+    return user.getIsAccountNonExpired();
+  }
+
+  @Override
+  public boolean isAccountNonLocked() {
+    return user.getIsAccountNonLocked();
+  }
+
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return user.getIsCredentialsNonExpired();
+  }
+
+  @Override
+  public boolean isEnabled() {
+    return true;
+  }
+
+}
