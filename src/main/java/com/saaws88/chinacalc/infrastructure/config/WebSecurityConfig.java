@@ -1,6 +1,6 @@
 package com.saaws88.chinacalc.infrastructure.config;
 
-import com.saaws88.chinacalc.infrastructure.dao.ChinacalcUserDetailsService;
+import com.saaws88.chinacalc.service.implementation.ChinacalcUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

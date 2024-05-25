@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.saaws88.chinacalc.domain.model.user.ChinacalcUser;
 import com.saaws88.chinacalc.domain.model.user.enumerated.Role;
-import com.saaws88.chinacalc.infrastructure.dao.UserDao;
+import com.saaws88.chinacalc.service.implementation.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,12 +21,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class AdminController {
 
   @Autowired
-  private UserDao dao;
+  private UserService service;
 
   @GetMapping("/admin")
   public String getAdminForm(Model model) {
     model.addAttribute("user", new ChinacalcUser());
-    model.addAttribute("userlist", dao.findAll());
+    model.addAttribute("userlist", service.findAll());
     return "admin";
   }
 
@@ -34,12 +34,12 @@ public class AdminController {
   public String createUser(@ModelAttribute("user") ChinacalcUser user, Model model,
       RedirectAttributes redirectAttributes) {
 
-    if (dao.isEmailExist(user.getEmail().toLowerCase())) {
+    if (service.isEmailExist(user.getEmail().toLowerCase())) {
       redirectAttributes.addFlashAttribute("error",
           "Пользователь с почтой " + user.getEmail().toLowerCase() + " уже существует.");
       return "redirect:/admin";
     }
-    dao.createUser(user);
+    service.createUser(user);
 
     redirectAttributes.addFlashAttribute("success",
         "Пользователь создан, временный пароль отправлен на " + user.getEmail());
@@ -50,7 +50,7 @@ public class AdminController {
   @GetMapping("admin/edituser/{id}")
   public String getUserEditForm(@PathVariable(value = "id") Long id, Model model, ChinacalcUser user) {
 
-    model.addAttribute("user", dao.getUserById(id));
+    model.addAttribute("user", service.getUserById(id));
 
     List<Role> roles = Arrays.asList(Role.values());
     model.addAttribute("roles", roles);
@@ -64,7 +64,7 @@ public class AdminController {
   public String updateUser(@PathVariable(value = "id") Long id, @ModelAttribute ChinacalcUser user,
   RedirectAttributes redirectAttributes) {
     
-    dao.updateUser(user);
+    service.updateUser(user);
     redirectAttributes.addFlashAttribute("editSuccess", "Пользователь " + user.getEmail() + " успешно сохранен");
     
     return "redirect:/admin/edituser/{id}";
@@ -75,7 +75,7 @@ public class AdminController {
   @PostMapping("admin/deleteuser/{id}")
   public String deleteUser(@PathVariable(value = "id") Long id, RedirectAttributes redirectAttributes) {
     
-    dao.deleteUserById(id);
+    service.deleteUserById(id);
     
     return "redirect:/admin";
     
@@ -86,7 +86,7 @@ public class AdminController {
   public String updateUserPassword(@PathVariable(value = "id") Long id, @ModelAttribute ChinacalcUser user,
   RedirectAttributes redirectAttributes) {
     
-    dao.updateUserPassword(user);
+    service.updateUserPassword(user);
     
     return "redirect:/admin";
   }
@@ -96,7 +96,7 @@ public class AdminController {
   public String blockUser(@PathVariable(value = "id") Long id, @ModelAttribute ChinacalcUser user,
       RedirectAttributes redirectAttributes) {
 
-    dao.blockUserById(id);
+    service.blockUserById(id);
 
     return "redirect:/admin";
 

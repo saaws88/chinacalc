@@ -1,4 +1,4 @@
-package com.saaws88.chinacalc.infrastructure.dao;
+package com.saaws88.chinacalc.service.implementation;
 
 import com.saaws88.chinacalc.infrastructure.config.ChinacalcUserDetails;
 import com.saaws88.chinacalc.domain.model.user.ChinacalcUser;

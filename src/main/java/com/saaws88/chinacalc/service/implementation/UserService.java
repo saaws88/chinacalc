@@ -1,4 +1,4 @@
-package com.saaws88.chinacalc.infrastructure.dao;
+package com.saaws88.chinacalc.service.implementation;
 
 import java.util.List;
 
@@ -6,7 +6,6 @@ import com.saaws88.chinacalc.infrastructure.util.passgen.PassGen;
 import com.saaws88.chinacalc.domain.model.user.ChinacalcUser;
 import com.saaws88.chinacalc.domain.model.user.enumerated.Role;
 import com.saaws88.chinacalc.repo.UserRepository;
-import com.saaws88.chinacalc.service.UserPort;
 import com.saaws88.chinacalc.infrastructure.util.emailsender.EmailService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,7 +15,7 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class UserDao implements UserPort {
+public class UserService implements com.saaws88.chinacalc.service.UserService {
 
   private final UserRepository userRepository;
   private final BCryptPasswordEncoder encoder;
