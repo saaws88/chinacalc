@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.saaws88.chinacalc.domain.model.CurrencyEntity;
 
-public interface CurrencyPort {
+public interface CurrencyService {
   
   void addCurrencyRecord(CurrencyEntity currencyEntity);
   

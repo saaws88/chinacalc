@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.saaws88.chinacalc.domain.model.user.ChinacalcUser;
 import com.saaws88.chinacalc.domain.model.user.enumerated.Role;
-import com.saaws88.chinacalc.infrastructure.dao.UserDao;
+import com.saaws88.chinacalc.service.implementation.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,25 +23,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequestMapping("/api/v1/admin/users")
 public class UserApiController {
 
-  private final UserDao dao;
+  private final UserService service;
 
   @PostMapping("/add")
   public ResponseEntity<ChinacalcUser> createUser(@RequestBody ChinacalcUser user) {
-    dao.createUser(user);
+    service.createUser(user);
     return new ResponseEntity<ChinacalcUser>(user, HttpStatus.CREATED);
   }
 
   @PostMapping("/addadmin")
   public ResponseEntity<ChinacalcUser> createAdmin(@RequestBody ChinacalcUser user) {
     user.getRoles().add(Role.ADMIN);
-    dao.createUser(user);
+    service.createUser(user);
     return new ResponseEntity<ChinacalcUser>(user, HttpStatus.CREATED);
   }
 
   @DeleteMapping("/delete/{id}")
   public ResponseEntity<ChinacalcUser> deleteUserById(@PathVariable("id") Long id) {
 
-    dao.deleteUserById(id);
+    service.deleteUserById(id);
 
     return new ResponseEntity<>(HttpStatus.OK);
   }
@@ -49,7 +49,7 @@ public class UserApiController {
   @GetMapping("/all")
   public List<ChinacalcUser> listAll() {
 
-    return dao.findAll();
+    return service.findAll();
   
   }
   

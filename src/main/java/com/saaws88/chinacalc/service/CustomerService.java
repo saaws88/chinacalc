@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.saaws88.chinacalc.domain.model.customer.Customer;
 
-public interface CustomerPort {
+public interface CustomerService {
   
   void createCustomer(Customer customer);
 

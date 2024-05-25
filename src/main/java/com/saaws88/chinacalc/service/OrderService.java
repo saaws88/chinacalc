@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.saaws88.chinacalc.domain.model.order.Order;
 
-public interface OrderPort {
+public interface OrderService {
   
   List<Order> findAll();
 

@@ -1,10 +1,10 @@
-package com.saaws88.chinacalc.infrastructure.dao;
+package com.saaws88.chinacalc.service.implementation;
 
 import java.util.List;
 
 import com.saaws88.chinacalc.domain.model.CurrencyEntity;
 import com.saaws88.chinacalc.repo.CurrencyRepository;
-import com.saaws88.chinacalc.service.CurrencyPort;
+import com.saaws88.chinacalc.service.CurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Service
 @AllArgsConstructor
 @NoArgsConstructor
-public class CurrencyDao implements CurrencyPort {
+public class CurrencyServiceImpl implements CurrencyService {
 
   @Autowired
   private CurrencyRepository currencyRepository;

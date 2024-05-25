@@ -4,8 +4,7 @@ import java.util.List;
 
 
 import com.saaws88.chinacalc.domain.model.customer.Customer;
-import com.saaws88.chinacalc.infrastructure.dao.CustomerDao;
-import com.saaws88.chinacalc.service.CustomerPort;
+import com.saaws88.chinacalc.service.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,12 +22,12 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/api/v1/customer")
 public class CustomerApiController {
   
-  private final CustomerDao dao;
+  private final CustomerService service;
 
   @PostMapping("/add")
   public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
       
-    dao.createCustomer(customer);
+    service.createCustomer(customer);
 
     return new ResponseEntity<Customer>(customer, HttpStatus.CREATED);
   
@@ -37,14 +36,14 @@ public class CustomerApiController {
   @GetMapping("/all")
   public List<Customer> listAll() {
       
-    return dao.findAll();
+    return service.findAll();
   
   }
 
   @DeleteMapping("/delete/{id}")
   public ResponseEntity<Customer> deleteUserById(@PathVariable("id") Long id) {
 
-    dao.deleteCustomerById(id);
+    service.deleteCustomerById(id);
 
     return new ResponseEntity<>(HttpStatus.OK);
   }

@@ -1,7 +1,7 @@
 package com.saaws88.chinacalc.infrastructure.controller.mvc;
 
 import com.saaws88.chinacalc.domain.model.customer.Customer;
-import com.saaws88.chinacalc.infrastructure.dao.CustomerDao;
+import com.saaws88.chinacalc.service.CustomerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequestMapping("/customers")
 public class CustomerController {
 
-  private final CustomerDao customerService;
+  private final CustomerService customerService;
 
   @GetMapping("")
   public String getCustomersForm(Model model) {

@@ -1,11 +1,11 @@
-package com.saaws88.chinacalc.infrastructure.dao;
+package com.saaws88.chinacalc.service.implementation;
 
 import java.util.List;
 
 import com.saaws88.chinacalc.domain.model.customer.Customer;
 import com.saaws88.chinacalc.domain.model.customer.enumerated.CustomerCategory;
 import com.saaws88.chinacalc.repo.CustomerRepository;
-import com.saaws88.chinacalc.service.CustomerPort;
+import com.saaws88.chinacalc.service.CustomerService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class CustomerDao implements CustomerPort {
+public class CustomerServiceImpl implements CustomerService {
 
   private CustomerRepository customerRepository;
 
