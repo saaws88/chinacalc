@@ -87,6 +87,11 @@
       <artifactId>jakarta.validation-api</artifactId>
       <version>3.0.2</version>
     </dependency>
+    <dependency>
+      <groupId>org.flywaydb</groupId>
+      <artifactId>flyway-maven-plugin</artifactId>
+      <version>10.7.1</version>
+    </dependency>
     <!-- Redis -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
