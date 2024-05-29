@@ -11,8 +11,8 @@ public class Tariff {
 
   private long costToHuzhou; 
 
-  private final long CROSSBOARDER_BY_WEIGHT = 350;
-  private final long CROSSBOARDER_BY_VOLUME = 38000;
+  private static final long CROSSBOARDER_BY_WEIGHT = 350;
+  private static final long CROSSBOARDER_BY_VOLUME = 38000;
 
   Tariff(long costToHuzhou) {
     this.costToHuzhou = costToHuzhou;
