@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import com.saaws88.chinacalc.domain.model.customer.Customer;
 import com.saaws88.chinacalc.domain.model.order.enumerated.OrderStatus;
-import com.saaws88.chinacalc.domain.model.parcel.enumerated.PackageType;
+import com.saaws88.chinacalc.domain.model.order.enumerated.PackageType;
 import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Column;
@@ -22,7 +22,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Table(name = "chinacalc_orders")
+@Table(name = "chinacalc_order")
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -57,7 +57,7 @@ public class Order {
   private double packagedWeight;
   @Column(name = "packaged_volume")
   private double packagedVolume;
-  @Column(name = "insurence_cost")
+  @Column(name = "insurance_cost")
   private double insuranceCost;
   @Column(name = "cost_to_yiwu")
   private double costToYiwu;
