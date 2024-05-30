@@ -42,17 +42,17 @@ public class ChinacalcUserDetails implements UserDetails {
 
   @Override
   public boolean isAccountNonExpired() {
-    return user.getIsAccountNonExpired();
+    return user.isAccountNonExpired();
   }
 
   @Override
   public boolean isAccountNonLocked() {
-    return user.getIsAccountNonLocked();
+    return user.isAccountNonLocked();
   }
 
   @Override
   public boolean isCredentialsNonExpired() {
-    return user.getIsCredentialsNonExpired();
+    return user.isCredentialsNonExpired();
   }
 
   @Override

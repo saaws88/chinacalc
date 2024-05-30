@@ -12,6 +12,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Валюта
+ */
 @Getter
 @Setter
 @AllArgsConstructor
@@ -19,9 +22,15 @@ import lombok.Setter;
 @RedisHash("Currencies")
 public class CurrencyEntity implements Serializable {
 
+  /**
+   * Код валюты, ключ
+   */
   @Id
   @AccessType(Type.PROPERTY)
   private String id;
+  /**
+   * Курс валюты
+   */
   private String rates;
 
 }
