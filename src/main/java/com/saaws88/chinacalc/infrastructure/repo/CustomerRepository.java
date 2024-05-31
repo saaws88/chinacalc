@@ -1,4 +1,4 @@
-package com.saaws88.chinacalc.repo;
+package com.saaws88.chinacalc.infrastructure.repo;
 
 import java.util.Optional;
 
@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long>{
 
-  Optional<Customer> findByIndividualTaxpayerNumber(String itn);
+  Optional<Customer> findByTaxpayerIdentificationNumber(String tin);
 
 }

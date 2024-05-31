@@ -1,4 +1,4 @@
-package com.saaws88.chinacalc.repo;
+package com.saaws88.chinacalc.infrastructure.repo;
 
 import java.util.Optional;
 

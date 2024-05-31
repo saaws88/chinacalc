@@ -5,7 +5,7 @@ import java.util.List;
 import com.saaws88.chinacalc.infrastructure.util.passgen.PassGen;
 import com.saaws88.chinacalc.domain.model.user.ChinacalcUser;
 import com.saaws88.chinacalc.domain.model.user.enumerated.Role;
-import com.saaws88.chinacalc.repo.UserRepository;
+import com.saaws88.chinacalc.infrastructure.repo.UserRepository;
 import com.saaws88.chinacalc.infrastructure.util.emailsender.EmailService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
