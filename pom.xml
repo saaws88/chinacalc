@@ -17,6 +17,7 @@
     <description>Web GUI for ChinaCalc app</description>
     <properties>
         <java.version>17</java.version>
+        <testContainers.version>1.19.8</testContainers.version>
     </properties>
     <dependencies>
 
@@ -54,6 +55,25 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers-bom</artifactId>
+            <version>${testContainers.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${testContainers.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${testContainers.version}</version>
             <scope>test</scope>
         </dependency>
         <!-- Security -->
@@ -120,9 +140,6 @@
                 <configuration>
                     <destFile>./target/jacoco.exec</destFile>
                     <append>true</append>
-                    <excludes>
-                        <exclude>${apiPackagePath}</exclude>
-                    </excludes>
                 </configuration>
                 <executions>
                     <execution>

@@ -1,4 +1,4 @@
-package com.saaws88.chinacalc.repo;
+package com.saaws88.chinacalc.infrastructure.repo;
 
 import com.saaws88.chinacalc.domain.model.CurrencyEntity;
 import org.springframework.data.repository.CrudRepository;

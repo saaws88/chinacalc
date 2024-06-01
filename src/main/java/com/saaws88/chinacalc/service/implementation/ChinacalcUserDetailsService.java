@@ -2,7 +2,7 @@ package com.saaws88.chinacalc.service.implementation;
 
 import com.saaws88.chinacalc.infrastructure.config.ChinacalcUserDetails;
 import com.saaws88.chinacalc.domain.model.user.ChinacalcUser;
-import com.saaws88.chinacalc.repo.UserRepository;
+import com.saaws88.chinacalc.infrastructure.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

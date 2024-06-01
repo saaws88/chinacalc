@@ -82,6 +82,6 @@ public class Customer {
    * ИНН клиента
    */
   @Column(name = "taxpayer_number")
-  private String individualTaxpayerNumber;
+  private String taxpayerIdentificationNumber;
 
 }

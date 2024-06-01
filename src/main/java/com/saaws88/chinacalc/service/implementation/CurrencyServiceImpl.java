@@ -3,7 +3,7 @@ package com.saaws88.chinacalc.service.implementation;
 import java.util.List;
 
 import com.saaws88.chinacalc.domain.model.CurrencyEntity;
-import com.saaws88.chinacalc.repo.CurrencyRepository;
+import com.saaws88.chinacalc.infrastructure.repo.CurrencyRepository;
 import com.saaws88.chinacalc.service.CurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

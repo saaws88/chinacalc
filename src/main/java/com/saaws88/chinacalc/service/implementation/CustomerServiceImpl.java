@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.saaws88.chinacalc.domain.model.customer.Customer;
 import com.saaws88.chinacalc.domain.model.customer.enumerated.CustomerCategory;
-import com.saaws88.chinacalc.repo.CustomerRepository;
+import com.saaws88.chinacalc.infrastructure.repo.CustomerRepository;
 import com.saaws88.chinacalc.service.CustomerService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -84,7 +84,7 @@ public class CustomerServiceImpl implements CustomerService {
     updatedCustomer.setCity(customer.getCity());
     updatedCustomer.setEmail(customer.getEmail());
     updatedCustomer.setPhoneNumber(customer.getPhoneNumber());
-    updatedCustomer.setIndividualTaxpayerNumber(customer.getIndividualTaxpayerNumber());
+    updatedCustomer.setTaxpayerIdentificationNumber(customer.getTaxpayerIdentificationNumber());
 
 
     customerRepository.save(updatedCustomer);
