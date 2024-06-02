@@ -1,22 +1,21 @@
 package com.saaws88.chinacalc.service.implementation;
 
-import java.util.List;
-
 import com.saaws88.chinacalc.domain.model.CurrencyEntity;
 import com.saaws88.chinacalc.infrastructure.repo.CurrencyRepository;
 import com.saaws88.chinacalc.service.CurrencyService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
-
+import com.saaws88.chinacalc.service.implementation.exception.ObjectNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
 @AllArgsConstructor
 @NoArgsConstructor
-public class CurrencyServiceImpl implements CurrencyService {
+public class CurrencyServiceImplementation implements CurrencyService {
 
   @Autowired
   private CurrencyRepository currencyRepository;
@@ -24,12 +23,7 @@ public class CurrencyServiceImpl implements CurrencyService {
   @Override
   public void addCurrencyRecord(CurrencyEntity currency) {
 
-    var currencyEntity = new CurrencyEntity();
-
-    currencyEntity.setId(currency.getId());
-    currencyEntity.setRates(currency.getRates());
-
-    currencyRepository.save(currencyEntity);
+    currencyRepository.save(currency);
 
   }
 
@@ -44,7 +38,7 @@ public class CurrencyServiceImpl implements CurrencyService {
   public CurrencyEntity getByCurrencyName(String id) {
 
     return currencyRepository.findById(id)
-        .orElseThrow(() -> new UsernameNotFoundException("Валюта не найдена"));
+        .orElseThrow(() -> new ObjectNotFoundException("Валюта не найдена"));
 
   }
 
