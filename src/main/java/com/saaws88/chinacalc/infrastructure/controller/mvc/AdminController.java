@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.saaws88.chinacalc.domain.model.user.ChinacalcUser;
 import com.saaws88.chinacalc.domain.model.user.enumerated.Role;
-import com.saaws88.chinacalc.service.implementation.UserService;
+import com.saaws88.chinacalc.service.implementation.ChinacalcUserServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class AdminController {
 
   @Autowired
-  private UserService service;
+  private ChinacalcUserServiceImplementation service;
 
   @GetMapping("/admin")
   public String getAdminForm(Model model) {

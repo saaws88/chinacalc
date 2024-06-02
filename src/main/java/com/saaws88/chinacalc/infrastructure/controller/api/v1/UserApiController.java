@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.saaws88.chinacalc.domain.model.user.ChinacalcUser;
 import com.saaws88.chinacalc.domain.model.user.enumerated.Role;
-import com.saaws88.chinacalc.service.implementation.UserService;
+import com.saaws88.chinacalc.service.implementation.ChinacalcUserServiceImplementation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequestMapping("/api/v1/admin/users")
 public class UserApiController {
 
-  private final UserService service;
+  private final ChinacalcUserServiceImplementation service;
 
   @PostMapping("/add")
   public ResponseEntity<ChinacalcUser> createUser(@RequestBody ChinacalcUser user) {
@@ -35,7 +35,7 @@ public class UserApiController {
   public ResponseEntity<ChinacalcUser> createAdmin(@RequestBody ChinacalcUser user) {
     user.getRoles().add(Role.ADMIN);
     service.createUser(user);
-    return new ResponseEntity<ChinacalcUser>(user, HttpStatus.CREATED);
+    return new ResponseEntity<>(user, HttpStatus.CREATED);
   }
 
   @DeleteMapping("/delete/{id}")

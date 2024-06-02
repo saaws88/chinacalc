@@ -6,14 +6,14 @@ import com.saaws88.chinacalc.domain.model.customer.Customer;
 import com.saaws88.chinacalc.domain.model.customer.enumerated.CustomerCategory;
 import com.saaws88.chinacalc.infrastructure.repo.CustomerRepository;
 import com.saaws88.chinacalc.service.CustomerService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import com.saaws88.chinacalc.service.implementation.exception.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class CustomerServiceImpl implements CustomerService {
+public class CustomerServiceImplementation implements CustomerService {
 
   private CustomerRepository customerRepository;
 
@@ -53,7 +53,7 @@ public class CustomerServiceImpl implements CustomerService {
   @Override
   public Customer getCustomerById(Long id) {
 
-    return customerRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("Клиент не найден"));
+    return customerRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Клиент не найден"));
 
   }
 

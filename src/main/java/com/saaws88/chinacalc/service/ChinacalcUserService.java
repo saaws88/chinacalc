@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.saaws88.chinacalc.domain.model.user.ChinacalcUser;
 
-public interface UserService {
+public interface ChinacalcUserService {
 
   void createUser(ChinacalcUser user);
 
