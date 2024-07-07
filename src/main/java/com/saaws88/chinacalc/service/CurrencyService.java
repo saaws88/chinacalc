@@ -7,12 +7,13 @@ import com.saaws88.chinacalc.domain.model.CurrencyEntity;
 public interface CurrencyService {
   
   void addCurrencyRecord(CurrencyEntity currencyEntity);
-  
-  void deleteByCurrencyName(String currencyName);
 
-  CurrencyEntity getByCurrencyName(String currencyName);
+  void updateCurrencyRate(CurrencyEntity currency);
+  
+  void deleteByCode(String code);
+
+  CurrencyEntity getByCode(String code);
 
   List<CurrencyEntity> findAll();
-
 
 }

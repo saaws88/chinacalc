@@ -8,7 +8,6 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -33,15 +32,8 @@ public class WebSecurityConfig {
     http
         .csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests(requests -> requests
-            .requestMatchers("/admin/**").hasAuthority("ADMIN")
-            .requestMatchers("/orders/**", "/customers/**", "/main").hasAuthority("MANAGER")
-            .requestMatchers("/", "/home", "/error", "/api/**").permitAll()
-            .anyRequest().authenticated())
-        .formLogin(login -> login
-            .loginPage("/login")
-            .defaultSuccessUrl("/home")
-            .permitAll())
-        .logout(LogoutConfigurer::permitAll);
+            .requestMatchers("/**").permitAll()
+            .anyRequest().authenticated());
 
     return http.build();
   }

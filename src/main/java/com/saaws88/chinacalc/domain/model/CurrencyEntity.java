@@ -1,16 +1,16 @@
 package com.saaws88.chinacalc.domain.model;
 
-import java.io.Serializable;
-
-import org.springframework.data.annotation.AccessType;
-import org.springframework.data.annotation.AccessType.Type;
-import org.springframework.data.redis.core.RedisHash;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.io.Serializable;
 
 /**
  * Валюта
@@ -19,18 +19,24 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@RedisHash("Currencies")
+@Entity(name = "currency")
 public class CurrencyEntity implements Serializable {
 
   /**
-   * Код валюты, ключ
+   * Идентификатор валюты в БД, ключ
    */
   @Id
-  @AccessType(Type.PROPERTY)
-  private String id;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  /**
+   * Код валюты в формате ISO 4217
+   */
+  @Column(name = "code")
+  private String code;
   /**
    * Курс валюты
    */
-  private String rates;
+  @Column(name = "rate")
+  private Double rate;
 
 }

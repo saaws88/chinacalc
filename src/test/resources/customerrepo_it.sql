@@ -1,3 +1,3 @@
-INSERT INTO chinacalc_customer (is_private_person, customer_name, contact_last_name, contact_first_name, contact_patronymic, city, email, phone_number, customer_category, taxpayer_number)
-VALUES (true, 'John Doe', 'Doe', 'John', null, 'New York', 'johndoe@example.com', '1234567890', 1, null),
-       (false, 'ABC Company', 'Smith', 'Jane', 'Doe', 'Los Angeles', 'janesmith@example.com', '9876543210', 2, '123456789');
+INSERT INTO chinacalc_customer (id, is_private_person, customer_name, contact_last_name, contact_first_name, contact_patronymic, city, email, phone_number, customer_category, taxpayer_number)
+VALUES (1, true, 'John Doe', 'Doe', 'John', null, 'New York', 'johndoe@example.com', '1234567890', 1, null),
+       (2, false, 'ABC Company', 'Smith', 'Jane', 'Doe', 'Los Angeles', 'janesmith@example.com', '9876543210', 2, '123456789');
