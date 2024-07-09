@@ -6,11 +6,11 @@ import com.saaws88.chinacalc.domain.model.customer.enumerated.CustomerCategory;
 import com.saaws88.chinacalc.service.CustomerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.ArrayList;
 
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -27,7 +28,7 @@ class CustomerControllerImplementationTest {
   @Autowired
   private MockMvc mockMvc;
 
-  @Mock
+  @MockBean
   private CustomerService service;
 
   @BeforeEach
@@ -87,7 +88,7 @@ class CustomerControllerImplementationTest {
         .taxpayerIdentificationNumber("007")
         .build();
 
-    when(service.getCustomerById(customerId)).thenReturn(customer);
+    when(service.getCustomerById(eq(customerId))).thenReturn(customer);
 
     mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/customer/delete/{id}", customerId))
         .andExpect(MockMvcResultMatchers.status().isOk());

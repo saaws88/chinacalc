@@ -1,28 +1,28 @@
 package com.saaws88.chinacalc.infrastructure.controller.api.v1.user;
 
-import java.util.List;
-
 import com.saaws88.chinacalc.domain.model.user.ChinacalcUser;
 import com.saaws88.chinacalc.domain.model.user.enumerated.Role;
-import com.saaws88.chinacalc.service.implementation.ChinacalcUserServiceImplementation;
+import com.saaws88.chinacalc.service.ChinacalcUserService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
+import java.util.List;
 
 
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/v1/admin")
 public class UserControllerImplementation implements UserController {
-  private final ChinacalcUserServiceImplementation service;
+
+  private final ChinacalcUserService service;
 
   @PostMapping("/add")
   public ResponseEntity<ChinacalcUser> createUser(@RequestBody ChinacalcUser user) {
