@@ -1,31 +1,27 @@
-package com.saaws88.chinacalc.infrastructure.controller.api.v1;
-
-import java.util.List;
+package com.saaws88.chinacalc.infrastructure.controller.api.v1.currency;
 
 import com.saaws88.chinacalc.domain.model.CurrencyEntity;
 import com.saaws88.chinacalc.service.CurrencyService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @RestController
 @Controller
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 @RequestMapping("/api/v1/currency")
-public class CurrencyApiController {
+public class CurrencyControllerImplementation implements CurrencyController {
 
-  @Autowired
-  private CurrencyService service;
+  private final CurrencyService service;
 
   @PostMapping("/add")
   public ResponseEntity<CurrencyEntity> addCurrency(@RequestBody CurrencyEntity currency) {
@@ -33,6 +29,15 @@ public class CurrencyApiController {
     service.addCurrencyRecord(currency);
 
     return new ResponseEntity<>(currency, HttpStatus.CREATED);
+
+  }
+
+  @PutMapping("/update")
+  public ResponseEntity<CurrencyEntity> updateRate(@RequestBody CurrencyEntity currency) {
+
+    service.updateCurrencyRate(currency);
+
+    return new ResponseEntity<>(currency, HttpStatus.OK);
 
   }
 

@@ -1,4 +1,4 @@
-package com.saaws88.chinacalc.infrastructure.controller.api.v1;
+package com.saaws88.chinacalc.infrastructure.controller.api.v1.customer;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ import lombok.AllArgsConstructor;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/v1/customer")
-public class CustomerApiController {
+public class CustomerControllerImplementation implements CustomerController {
   
   private final CustomerService service;
 
@@ -29,7 +29,7 @@ public class CustomerApiController {
       
     service.createCustomer(customer);
 
-    return new ResponseEntity<Customer>(customer, HttpStatus.CREATED);
+    return new ResponseEntity<>(customer, HttpStatus.CREATED);
   
   }
   
@@ -41,11 +41,12 @@ public class CustomerApiController {
   }
 
   @DeleteMapping("/delete/{id}")
-  public ResponseEntity<Customer> deleteUserById(@PathVariable("id") Long id) {
+  public ResponseEntity<String> deleteCustomerById(@PathVariable("id") Long id) {
 
+    String name = service.getCustomerById(id).getCustomerName();
     service.deleteCustomerById(id);
 
-    return new ResponseEntity<>(HttpStatus.OK);
+    return new ResponseEntity<>(String.format("Клиент %s удален", name), HttpStatus.OK);
   }
 
 }

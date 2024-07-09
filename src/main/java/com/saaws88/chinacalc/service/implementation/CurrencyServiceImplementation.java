@@ -5,39 +5,50 @@ import com.saaws88.chinacalc.infrastructure.repo.CurrencyRepository;
 import com.saaws88.chinacalc.service.CurrencyService;
 import com.saaws88.chinacalc.service.implementation.exception.ObjectNotFoundException;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
 @AllArgsConstructor
-@NoArgsConstructor
 public class CurrencyServiceImplementation implements CurrencyService {
 
-  @Autowired
-  private CurrencyRepository currencyRepository;
+  private final CurrencyRepository currencyRepository;
 
-  @Override
   public void addCurrencyRecord(CurrencyEntity currency) {
-
     currencyRepository.save(currency);
+  }
+
+  @Override
+  public void updateCurrencyRate(CurrencyEntity currency) {
+
+    Optional<CurrencyEntity> ce = currencyRepository.findByCode(currency.getCode());
+
+    if (ce.isPresent()) {
+
+      ce.get().setRate(currency.getRate());
+      currencyRepository.save(ce.get());
+
+    } else {
+      
+      currencyRepository.save(currency);    
+    }
+  
+  }
+
+  @Override
+  public void deleteByCode(String code) {
+
+    currencyRepository.deleteByCode(code);
 
   }
 
   @Override
-  public void deleteByCurrencyName(String id) {
+  public CurrencyEntity getByCode(String code) {
 
-    currencyRepository.deleteById(id);
-
-  }
-
-  @Override
-  public CurrencyEntity getByCurrencyName(String id) {
-
-    return currencyRepository.findById(id)
+    return currencyRepository.findByCode(code)
         .orElseThrow(() -> new ObjectNotFoundException("Валюта не найдена"));
 
   }

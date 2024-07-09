@@ -31,7 +31,7 @@ public class CurrencyServiceImplementationTest {
   @DisplayName("Создание записи о валюте с валидными данными работает")
   public void addCurrencyRecord_addCurrency_saved() {
 
-    CurrencyEntity usd = new CurrencyEntity("USD", "9044");
+    CurrencyEntity usd = new CurrencyEntity(1L, "USD", 90.44);
 
     service.addCurrencyRecord(usd);
 
@@ -41,36 +41,36 @@ public class CurrencyServiceImplementationTest {
 
   @Test
   @DisplayName("Удаление по названию валюты происходит успешно")
-  public void deleteByCurrencyName_currencyNameEqualsUsd_asIntended() {
+  public void deleteByCode_currencyNameEqualsUsd_asIntended() {
 
-    service.deleteByCurrencyName("usd");
+    service.deleteByCode("usd");
 
-    verify(repo).deleteById("usd");
+    verify(repo).deleteByCode("usd");
 
   }
 
   @Test
   @DisplayName("Поиск валюты по имени работает находит корректную запись")
-  public void getByCurrencyName_currencyNameEqualsUsd_asIntended() {
+  public void getByCode_currencyNameEqualsUsd_asIntended() {
 
-    CurrencyEntity usd = new CurrencyEntity("USD", "9044");
+    CurrencyEntity usd = new CurrencyEntity(1L,"USD", 90.44);
 
-    when(repo.findById("usd")).thenReturn(Optional.of(usd));
+    when(repo.findByCode("usd")).thenReturn(Optional.of(usd));
 
-    CurrencyEntity supposedlyUsd = service.getByCurrencyName("usd");
+    CurrencyEntity supposedlyUsd = service.getByCode("usd");
 
-    verify(repo).findById("usd");
+    verify(repo).findByCode("usd");
     assertEquals(usd, supposedlyUsd);
 
   }
 
   @Test
   @DisplayName("Поиск несуществующей валюты по имени бросает исключение")
-  public void getByCurrencyName_currencyNameEqualsCny_throwsException() {
+  public void getByCode_currencyNameEqualsCny_throwsException() {
 
-    when(repo.findById("cny")).thenReturn(Optional.empty());
+    when(repo.findByCode("cny")).thenReturn(Optional.empty());
 
-    assertThrows(ObjectNotFoundException.class, () -> service.getByCurrencyName("cny"));
+    assertThrows(ObjectNotFoundException.class, () -> service.getByCode("cny"));
 
   }
 
@@ -80,8 +80,8 @@ public class CurrencyServiceImplementationTest {
 
     List<CurrencyEntity> currencies = new ArrayList<>();
 
-    currencies.add(new CurrencyEntity("usd", "9044"));
-    currencies.add(new CurrencyEntity("cny", "1272"));
+    currencies.add(new CurrencyEntity(1L,"usd", 90.44));
+    currencies.add(new CurrencyEntity(2L, "cny", 12.72));
 
     when(repo.findAll()).thenReturn(currencies);
 
