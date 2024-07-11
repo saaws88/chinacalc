@@ -1,4 +1,4 @@
-package com.saaws88.chinacalc.infrastructure.controller.api.v1;
+package com.saaws88.chinacalc.infrastructure.api.v1;
 
 import com.saaws88.chinacalc.service.implementation.exception.ObjectAlreadyExistsException;
 import com.saaws88.chinacalc.service.implementation.exception.ObjectNotFoundException;

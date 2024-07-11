@@ -19,10 +19,10 @@ import lombok.Setter;
  */
 @Table(name = "chinacalc_customer")
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class Customer {
 

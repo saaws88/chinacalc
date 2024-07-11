@@ -1,11 +1,14 @@
-package com.saaws88.chinacalc.infrastructure.controller.api.v1.currency;
+package com.saaws88.chinacalc.infrastructure.api.v1.currency;
 
 import com.saaws88.chinacalc.domain.model.CurrencyEntity;
 import com.saaws88.chinacalc.service.CurrencyService;
+
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -18,33 +21,39 @@ import java.util.List;
 @RestController
 @Controller
 @RequiredArgsConstructor
+@Validated
 @RequestMapping("/api/v1/currency")
 public class CurrencyControllerImplementation implements CurrencyController {
 
   private final CurrencyService service;
+  private final CurrencyConverter converter;
 
   @PostMapping("/add")
-  public ResponseEntity<CurrencyEntity> addCurrency(@RequestBody CurrencyEntity currency) {
+  public ResponseEntity<CurrencyDto> addCurrency(@Valid @RequestBody CurrencyDto dto) {
 
+    CurrencyEntity currency = converter.toEntity(dto);
     service.addCurrencyRecord(currency);
 
-    return new ResponseEntity<>(currency, HttpStatus.CREATED);
+    return new ResponseEntity<>(dto, HttpStatus.CREATED);
 
   }
 
   @PutMapping("/update")
-  public ResponseEntity<CurrencyEntity> updateRate(@RequestBody CurrencyEntity currency) {
+  public ResponseEntity<CurrencyDto> updateRate(@RequestBody CurrencyDto dto) {
 
+    CurrencyEntity currency = converter.toEntity(dto);
     service.updateCurrencyRate(currency);
 
-    return new ResponseEntity<>(currency, HttpStatus.OK);
+    return new ResponseEntity<>(dto, HttpStatus.OK);
 
   }
 
   @GetMapping("/all")
-  public List<CurrencyEntity> getAll() {
+  public List<CurrencyDto> getAll() {
 
-    return service.findAll();
+    return service.findAll().stream()
+        .map(converter::toDto)
+        .toList();
 
   }
 

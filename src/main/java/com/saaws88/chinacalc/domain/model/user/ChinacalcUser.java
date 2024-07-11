@@ -77,4 +77,8 @@ public class ChinacalcUser {
   @Column(name = "creds_not_expired", nullable = false)
   private boolean credentialsNonExpired;
 
+
+  public ChinacalcUser(String email) {
+    this.email = email;
+  }
 }

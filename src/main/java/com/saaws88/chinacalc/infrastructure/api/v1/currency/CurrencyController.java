@@ -1,7 +1,5 @@
-package com.saaws88.chinacalc.infrastructure.controller.api.v1.currency;
+package com.saaws88.chinacalc.infrastructure.api.v1.currency;
 
-
-import com.saaws88.chinacalc.domain.model.CurrencyEntity;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -10,9 +8,11 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
+@Validated
 @Tag(name = "Работа с валютами")
 public interface CurrencyController {
 
@@ -25,7 +25,7 @@ public interface CurrencyController {
               content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}
           )
       )
-  ResponseEntity<CurrencyEntity> addCurrency(@Valid CurrencyEntity currency);
+  ResponseEntity<CurrencyDto> addCurrency(@Valid CurrencyDto dto);
 
   @ApiResponse(responseCode = "200", description = "OK")
   @Operation
@@ -36,12 +36,12 @@ public interface CurrencyController {
               content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}
           )
       )
-  ResponseEntity<CurrencyEntity> updateRate(@Valid CurrencyEntity currency);
+  ResponseEntity<CurrencyDto> updateRate(@Valid CurrencyDto dto);
 
 
 
   @ApiResponse(responseCode = "200", description = "OK")
   @Operation(summary = "Получение всех записей о курсах валют")
-  List<CurrencyEntity> getAll();
+  List<CurrencyDto> getAll();
 
 }

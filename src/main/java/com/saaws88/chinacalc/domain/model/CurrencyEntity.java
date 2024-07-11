@@ -10,8 +10,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
-
 /**
  * Валюта
  */
@@ -20,7 +18,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "currency")
-public class CurrencyEntity implements Serializable {
+public class CurrencyEntity {
 
   /**
    * Идентификатор валюты в БД, ключ

@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -34,6 +35,7 @@ public class ChinacalcUserServiceImplementation implements ChinacalcUserService 
     String password = PassGen.generatePassayPassword();
     emailService.sendTemporaryPassword(userEmail, password);
     user.setPassword(encoder.encode(password));
+    user.setRoles(new HashSet<>());
     user.getRoles().add(Role.MANAGER);
     user.setAccountNonExpired(true);
     user.setCredentialsNonExpired(true);
