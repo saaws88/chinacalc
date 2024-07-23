@@ -18,6 +18,6 @@ public class CurrencyDto {
 
   @Schema(description = "Курс валюты к рублю")
   @NotNull
-  private String rate;
+  private Double rate;
 
 }

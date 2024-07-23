@@ -18,11 +18,14 @@ public class CurrencyServiceImplementation implements CurrencyService {
   private final CurrencyRepository currencyRepository;
 
   public void addCurrencyRecord(CurrencyEntity currency) {
+    
     currencyRepository.save(currency);
+  
   }
 
   @Override
   public void updateCurrencyRate(CurrencyEntity currency) {
+
 
     Optional<CurrencyEntity> ce = currencyRepository.findByCode(currency.getCode());
 
