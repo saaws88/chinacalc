@@ -1,4 +1,4 @@
-package com.saaws88.chinacalc.infrastructure.controller.api.v1.email;
+package com.saaws88.chinacalc.infrastructure.api.v1.email.controller;
 
 
 import org.junit.jupiter.api.Test;

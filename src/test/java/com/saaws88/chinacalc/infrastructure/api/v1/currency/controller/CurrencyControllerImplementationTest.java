@@ -1,7 +1,8 @@
-package com.saaws88.chinacalc.infrastructure.controller.api.v1.currency;
+package com.saaws88.chinacalc.infrastructure.api.v1.currency.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.saaws88.chinacalc.domain.model.CurrencyEntity;
+import com.saaws88.chinacalc.infrastructure.api.v1.currency.CurrencyDto;
 import com.saaws88.chinacalc.service.CurrencyService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,9 +40,11 @@ class CurrencyControllerImplementationTest {
 
   @Test
   void testAddCurrency() throws Exception {
-    CurrencyEntity currency = new CurrencyEntity();
+    CurrencyDto dto = new CurrencyDto();
+    dto.setCode("USD");
+    dto.setRate(12.01);
     ObjectMapper objectMapper = new ObjectMapper();
-    String jsonBody = objectMapper.writeValueAsString(currency);
+    String jsonBody = objectMapper.writeValueAsString(dto);
 
     mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/currency/add")
             .contentType(MediaType.APPLICATION_JSON)

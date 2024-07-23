@@ -1,9 +1,12 @@
-package com.saaws88.chinacalc.infrastructure.controller.api.v1.user;
+package com.saaws88.chinacalc.infrastructure.api.v1.user;
 
 import com.saaws88.chinacalc.domain.model.user.ChinacalcUser;
 import com.saaws88.chinacalc.domain.model.user.enumerated.Role;
+import com.saaws88.chinacalc.infrastructure.api.v1.user.dto.UserCreationDto;
+import com.saaws88.chinacalc.infrastructure.api.v1.user.dto.UserResponseDto;
 import com.saaws88.chinacalc.service.ChinacalcUserService;
 import lombok.AllArgsConstructor;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashSet;
 import java.util.List;
 
 
@@ -23,18 +27,30 @@ import java.util.List;
 public class UserControllerImplementation implements UserController {
 
   private final ChinacalcUserService service;
+  private final UserConverter converter;
 
   @PostMapping("/add")
-  public ResponseEntity<ChinacalcUser> createUser(@RequestBody ChinacalcUser user) {
+  public ResponseEntity<UserResponseDto> createUser(@RequestBody UserCreationDto dto) {
+    
+    ChinacalcUser user = converter.toEntity(dto);
+    user.setRoles(new HashSet<>());  
     service.createUser(user);
-    return new ResponseEntity<>(user, HttpStatus.CREATED);
+    
+    return new ResponseEntity<>(converter.toDto(user), HttpStatus.CREATED);
+  
   }
 
   @PostMapping("/addadmin")
-  public ResponseEntity<ChinacalcUser> createAdmin(@RequestBody ChinacalcUser user) {
+  public ResponseEntity<UserResponseDto> createAdmin(@RequestBody UserCreationDto dto) {
+  
+    ChinacalcUser user = converter.toEntity(dto);
+    
+    user.setRoles(new HashSet<>());
     user.getRoles().add(Role.ADMIN);
     service.createUser(user);
-    return new ResponseEntity<>(user, HttpStatus.CREATED);
+    
+    return new ResponseEntity<>(converter.toDto(user), HttpStatus.CREATED);
+  
   }
 
   @DeleteMapping("/delete/{id}")
@@ -48,9 +64,12 @@ public class UserControllerImplementation implements UserController {
   }
 
   @GetMapping("/all")
-  public List<ChinacalcUser> listAll() {
+  public List<UserResponseDto> listAll() {
 
-    return service.findAll();
+    return service.findAll()
+      .stream()
+      .map(converter::toDto)
+      .toList();
   
   }
 

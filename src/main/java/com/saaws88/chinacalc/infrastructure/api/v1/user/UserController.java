@@ -1,12 +1,14 @@
-package com.saaws88.chinacalc.infrastructure.controller.api.v1.user;
+package com.saaws88.chinacalc.infrastructure.api.v1.user;
 
 
 import java.util.List;
 
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 
-import com.saaws88.chinacalc.domain.model.user.ChinacalcUser;
+import com.saaws88.chinacalc.infrastructure.api.v1.user.dto.UserCreationDto;
+import com.saaws88.chinacalc.infrastructure.api.v1.user.dto.UserResponseDto;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -18,7 +20,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @Tag(name = "Работа с пользователями")
+@Validated
 public interface UserController {
+
 
   @Operation
     (summary = "Создание пользователя", 
@@ -29,7 +33,7 @@ public interface UserController {
       )
     )
   @ApiResponse(responseCode = "201", description = "Пользователь создан")
-    ResponseEntity<ChinacalcUser> createUser(@Valid ChinacalcUser user);
+    ResponseEntity<UserResponseDto> createUser(@Valid UserCreationDto user);
 
   @Operation
     (summary = "Создание администратора",
@@ -40,8 +44,7 @@ public interface UserController {
        )
      )
   @ApiResponse(responseCode = "201", description = "Админ создан")
-    ResponseEntity<ChinacalcUser> createAdmin(@Valid ChinacalcUser user);
-
+    ResponseEntity<UserResponseDto> createAdmin(@Valid UserCreationDto dto);
   @Operation(summary = "Удаление пользователя по id",
     method = "DELETE",
     parameters = {@Parameter(name = "id", required = true, description = "Id пользователя")}
@@ -50,7 +53,7 @@ public interface UserController {
   ResponseEntity<String> deleteUserById(Long id);
 
   @Operation(summary = "Получения списка всех пользователей")
-  List<ChinacalcUser> listAll();
+  List<UserResponseDto> listAll();
 
   @ApiResponses(value = {
     @ApiResponse(responseCode = "200", description = "Пользователь заблокирован"),

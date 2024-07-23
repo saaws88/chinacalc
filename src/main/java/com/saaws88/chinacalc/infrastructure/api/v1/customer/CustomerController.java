@@ -1,4 +1,4 @@
-package com.saaws88.chinacalc.infrastructure.controller.api.v1.customer;
+package com.saaws88.chinacalc.infrastructure.api.v1.customer;
 
 import org.springframework.http.ResponseEntity;
 
@@ -6,7 +6,8 @@ import java.util.List;
 
 import org.springframework.http.MediaType;
 
-import com.saaws88.chinacalc.domain.model.customer.Customer;
+import com.saaws88.chinacalc.infrastructure.api.v1.customer.dto.CustomerCreationDto;
+import com.saaws88.chinacalc.infrastructure.api.v1.customer.dto.CustomerResponseDto;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -28,12 +29,12 @@ public interface CustomerController {
           )
       )
   @ApiResponse(responseCode = "201", description = "Клиент создан")
-  ResponseEntity<Customer> createCustomer(@Valid Customer customer);
+  ResponseEntity<CustomerResponseDto> createCustomer(@Valid CustomerCreationDto customer);
 
   @Operation
       (summary = "Получение списка клиентов",
           method = "GET")
-  List<Customer> listAll();
+  List<CustomerResponseDto> listAll();
 
   @Operation
       (summary = "Удаление клиента по ID",

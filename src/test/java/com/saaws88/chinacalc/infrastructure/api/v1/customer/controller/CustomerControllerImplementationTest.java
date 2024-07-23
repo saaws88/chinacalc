@@ -1,4 +1,4 @@
-package com.saaws88.chinacalc.infrastructure.controller.api.v1.customer;
+package com.saaws88.chinacalc.infrastructure.api.v1.customer.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.saaws88.chinacalc.domain.model.customer.Customer;
